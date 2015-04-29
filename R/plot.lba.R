@@ -20,21 +20,25 @@ plot.lba <- function(x,
          if(is.integer(grep('fe',class(x))) | is.integer(grep('logit',class(x)))) {
           nrowss <- dim(x[[6]])[1]
           alfas <- x[[6]]
+          alfas <- alfas/rowSums(alfas)
           pk <- x[[9]]
          } else {
           nrowss <- dim(x[[4]])[1]
           alfas <- x[[4]]
+          alfas <- alfas/rowSums(alfas)
           pk <- x[[6]] 
          }
         },
         lat = {
          if(is.integer(grep('fe',class(x))) | is.integer(grep('logit',class(x)))) { 
-          nrowss <- dim(x[[7]])[1]
-          alfas <- x[[7]]
+          nrowss <- dim(x[[8]])[1]
+          alfas <- x[[8]]
+          alfas <- alfas/rowSums(alfas)
           pk <- x[[9]]
          } else {
-          nrowss <- dim(x[[5]])[1]
-          alfas <- x[[5]]
+          nrowss <- dim(x[[6]])[1]
+          alfas <- x[[6]]
+          alfas <- alfas/rowSums(alfas)
           pk <- x[[6]] 
          }
         }

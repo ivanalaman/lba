@@ -340,11 +340,19 @@ colnames(pij) <- colnames(P)
 
  iter_ide <- round(as.numeric(xab$counts[2]/xab$outer.iterations)) + as.numeric(xab$outer.iterations)
 
+ rescB <- rescaleB(obj,
+                   A,
+                   B)
+
+ colnames(rescB) <- colnames(B)
+ rownames(rescB) <- rownames(B)
+
  results <- list(P,
                  pij,
                  residual,
                  A, 
                  B,
+                 rescB,
                  pk,
                  val_func,
                  iter_ide)
@@ -354,6 +362,7 @@ colnames(pij) <- colnames(P)
                      'residual',
                      'A',
                      'B',
+                     'rescB',
                      'pk',
                      'val_func',
                      'iter_ide') 

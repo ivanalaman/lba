@@ -497,6 +497,13 @@ rownames(B) <- colnames(P)
 
 colnames(A) <- colnames(B) <- colnames(pk) <- paste('LB',1:K,sep='')
 
+rescB <- rescaleB(obj,
+                  A,
+                  B)
+
+colnames(rescB) <- colnames(B)
+rownames(rescB) <- rownames(B)
+
 results <- list(P,
                 pij,
                 residual,
@@ -511,6 +518,7 @@ names(results) <- c('P',
                     'residual',
                     'A',
                     'B',
+                    'rescB',
                     'pk',
                     'val_func',
                     'iter_ide')
@@ -1093,11 +1101,19 @@ constmleFEalabama <- function(obj,
 
  val_func <- xab$value
 
+ rescB <- rescaleB(obj,
+                   A,
+                   B)
+
+ colnames(rescB) <- colnames(B)
+ rownames(rescB) <- rownames(B)
+
  results <- list(P,
                  pij,
                  residual,
                  A, 
                  B,
+                 rescB,
                  pk,
                  val_func,
                  iter_ide)
@@ -1107,6 +1123,7 @@ constmleFEalabama <- function(obj,
                      'residual',
                      'A',
                      'B',
+                     'rescB',
                      'pk',
                      'val_func',
                      'iter_ide')

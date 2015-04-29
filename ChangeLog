@@ -1,0 +1,4 @@
+2015-04-29 vs. 1.1 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+        * The plot function was corrected. Rescaled latent components were
+	placed instead of latent components. 
+	* The rescaled latent component were added to lba.ls.fe,lba.ls.logit,lba.mle.fe and lba.mle.logit, therefore the summary was also changed.

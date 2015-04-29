@@ -35,9 +35,15 @@ summary.lba.mle.logit <- function(object,
  cat('\n')
 
  cat('|-------------------------------------------|\n')
- cat('|             BUDGET PROPORTIONS            |\n')
+ cat('|          RESCALED LATENT BUDGETS          |\n')
  cat('|-------------------------------------------|\n')
  print(round(object[[6]],digits=digits))
+ cat('\n')
+
+ cat('|-------------------------------------------|\n')
+ cat('|             BUDGET PROPORTIONS            |\n')
+ cat('|-------------------------------------------|\n')
+ print(round(object[[7]],digits=digits))
  cat('\n')
 
  if(!is.null(logitA) & !is.null(logitB)){
@@ -45,13 +51,13 @@ summary.lba.mle.logit <- function(object,
   cat('|-------------------------------------------|\n')
   cat('|            LOGIT PARAMETERS OMSK          |\n')
   cat('|-------------------------------------------|\n')
-  print(round(object[[9]],digits=digits))
+  print(round(object[[10]],digits=digits))
   cat('\n')
 
   cat('|-------------------------------------------|\n')
   cat('|            LOGIT PARAMETERS PSITK         |\n')
   cat('|-------------------------------------------|\n')
-  print(round(object[[10]],digits=digits))
+  print(round(object[[11]],digits=digits))
   cat('\n')
 
  } else
@@ -65,7 +71,7 @@ summary.lba.mle.logit <- function(object,
   cat('|-------------------------------------------|\n')
   cat('|            LOGIT PARAMETERS OMSK          |\n')
   cat('|-------------------------------------------|\n')
-  print(round(object[[9]],digits=digits))
+  print(round(object[[10]],digits=digits))
   cat('\n')
 
  } else {
@@ -77,20 +83,20 @@ summary.lba.mle.logit <- function(object,
   cat('|-------------------------------------------|\n')
   cat('|            LOGIT PARAMETERS PSITK         |\n')
   cat('|-------------------------------------------|\n')
-  print(round(object[[9]],digits=digits))
+  print(round(object[[10]],digits=digits))
   cat('\n')
 
  }
 
- func <- formatC(round(object[[7]],digits=digits),
+ func <- formatC(round(object[[8]],digits=digits),
                  format='f',
                  digits=digits)
  cat('|-------------------------------------------|\n')
  cat(paste('| VALUE OF THE -LOGLF FUNCTION:',sep=' '),
      func,
      paste(rep(' ',(45-(35+nchar(func)))),collapse=''), '|\n')
- cat('| NUMBER OF ITERACTIONS:',round(object[[8]],digits=digits),
-     paste(rep(' ',(45-(28+nchar(object[[8]])))),collapse=''),'|\n')
+ cat('| NUMBER OF ITERACTIONS:',round(object[[9]],digits=digits),
+     paste(rep(' ',(45-(28+nchar(object[[9]])))),collapse=''),'|\n')
  cat('|-------------------------------------------|\n') 
 
 }

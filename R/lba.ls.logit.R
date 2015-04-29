@@ -243,11 +243,19 @@ logit.AB <- function(obj        ,
 
  iter_ide <- as.numeric(xab$counts[2])
 
+ rescB <- rescaleB(obj,
+                   A,
+                   B)
+
+ colnames(rescB) <- colnames(B)
+ rownames(rescB) <- rownames(B)
+
  results <- list(P,
                  pij,
                  residual,
                  A, 
                  B,
+                 rescB,
                  pk,
                  val_func,
                  iter_ide,
@@ -259,6 +267,7 @@ logit.AB <- function(obj        ,
                      'residual',
                      'A',
                      'B',
+                     'rescB',
                      'pk',
                      'val_func',
                      'iter_ide',
@@ -589,11 +598,19 @@ logit.A <- function(obj        ,
 
  iter_ide <- as.numeric(round(xab$counts[2]/xab$outer.iterations)) + as.numeric(xab$outer.iterations)
 
+ rescB <- rescaleB(obj,
+                   A,
+                   B)
+
+ colnames(rescB) <- colnames(B)
+ rownames(rescB) <- rownames(B)
+
  results <- list(P,
                  pij,
                  residual,
                  A, 
                  B,
+                 rescB,
                  pk,
                  val_func,
                  iter_ide,
@@ -604,6 +621,7 @@ logit.A <- function(obj        ,
                      'residual',
                      'A',
                      'B',
+                     'rescB',
                      'pk',
                      'val_func',
                      'iter_ide',
@@ -892,12 +910,20 @@ logit.B <- function(obj        ,
  val_func <- xab$value
 
  iter_ide <- as.numeric(round(xab$counts[2]/xab$outer.iterations)) + xab$outer.iterations
+ 
+ rescB <- rescaleB(obj,
+                   A,
+                   B)
 
+ colnames(rescB) <- colnames(B)
+ rownames(rescB) <- rownames(B)
+ 
  results <- list(P,
                  pij,
                  residual,
                  A, 
                  B,
+                 rescB,
                  pk,
                  val_func,
                  iter_ide,
@@ -908,6 +934,7 @@ logit.B <- function(obj        ,
                      'residual',
                      'A',
                      'B',
+                     'rescB',
                      'pk',
                      'val_func',
                      'iter_ide',

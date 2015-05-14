@@ -1,3 +1,9 @@
+2015-04-29 vs. 1.2 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+        * Minor corrections in file lba.Rd. 
+	* Minor corrections in the lba.mle.fe and lba.mle functions. Included rescB
+	in resc object and changed Aoi and Boi by A and B in the Pij object
+	respectively.
+
 2015-04-29 vs. 1.1 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
         * The plot function was corrected. Rescaled latent components were
 	placed instead of latent components. 

@@ -223,7 +223,7 @@ used; \code{"mle"} when maximum likelihood method is used. The default is \code{
 
  The method \code{lba.ls.fe} and \code{lba.mle.fe} returns a list of class \code{lba.ls.fe} and \code{lba.mle.fe} respectively with the slots:
 
- \item{P}{The compositional data matrix which is formed by dividing the raw data matrix by their corresponding total, its rows are called observed budgets.}
+ \item{P}{The compositional data matrix which is formed by dividing the raw data matrix by their corresponding row total, its rows are called observed budgets.}
  \item{pij}{Matrix whose rows are the expected budgets.}
  \item{residual}{Residual matrix \code{P - pij.}}
  \item{A}{(I x K) matrix of the unidentified the mixing parameters.}

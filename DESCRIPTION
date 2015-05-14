@@ -1,8 +1,8 @@
 Package: lba
 Title: Latent Budget Analysis for Compositional Data
-Version: 1.0
-Date: 2015-01-22
-Author: Enio G. Jelihovschi <eniojelihovs@gmail.com>
+Version: 1.2
+Date: 2015-05-14
+Author: Enio G. Jelihovschi <eniojelihovs@gmail.com>  and
         Ivan Bezerra Allaman <ivanalaman@gmail.com>
 Maintainer: Enio G. Jelihovschi <eniojelihovs@gmail.com>
 Depends: R (>= 3.1.2), MASS, alabama, plotrix, ca

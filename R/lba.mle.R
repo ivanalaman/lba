@@ -211,7 +211,7 @@ lba.mle <- function(obj     ,
 
  }
 
- pij <- Aoi %*% t(Boi)
+ pij <- A %*% t(B)
 
  residual <- P - pij
 

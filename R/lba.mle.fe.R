@@ -509,6 +509,7 @@ results <- list(P,
                 residual,
                 A, 
                 B,
+                rescB,
                 pk,
                 val_func,
                 iter_ide)

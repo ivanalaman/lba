@@ -257,10 +257,10 @@ goodnessfit <- function(object){
                      df = dfd) #p-value of chi2  
 
   #K = 1
-  proG1 <- 1-pchisq(G2, 
+  proG1 <- 1-pchisq(G2b, 
                     df = dfdb) #p-value of G2
 
-  prochi1 <- 1-pchisq(chi2, 
+  prochi1 <- 1-pchisq(chi2b, 
                       df = dfdb) #p-value of chi2 
 
   #==============================================================================
@@ -274,9 +274,9 @@ goodnessfit <- function(object){
 
   AICb <- G2b - 2*dfdb
 
-  BICb <- G2 - dfdb*log(I*J)
+  BICb <- G2b - dfdb*log(I*J)
 
-  CAICb <- G2 - dfdb*(log(I*J) + 1)
+  CAICb <- G2b - dfdb*(log(I*J) + 1)
   #==============================================================================
 
   #==============================================================================
@@ -284,8 +284,8 @@ goodnessfit <- function(object){
   #==============================================================================
   delta1 <- (G2b - G2)/G2b
   delta2 <- (G2b - G2)/(G2b-dfd)
-  rho1 <- (G2b/dfdb - G2/dfd)/(G2b/dfd)                 
-  rho2 <- (G2b/dfdb - G2/dfd)/(G2b/dfd - 1)
+  rho1 <- (G2b/dfdb - G2/dfd)/(G2b/dfdb)                 
+  rho2 <- (G2b/dfdb - G2/dfd)/(G2b/dfdb - 1)
 
   #xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   # GFS DISTRIBUTION FREE

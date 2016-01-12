@@ -16,6 +16,8 @@ lba.mle <- function(obj     ,
  I <- nrow(obj)
  J <- ncol(obj)
 
+ obj[obj==0] <- 1e-4
+
  P <- obj/rowSums(obj)
  #
  # ------------------------------------------------------------------------------

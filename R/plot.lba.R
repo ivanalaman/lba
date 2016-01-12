@@ -32,14 +32,28 @@ plot.lba <- function(x,
         lat = {
          if(is.integer(grep('fe',class(x))) | is.integer(grep('logit',class(x)))) { 
           nrowss <- dim(x[[8]])[1]
-          alfas <- x[[8]]
-          alfas <- alfas/rowSums(alfas)
+          
+          if(type=='lba'){
+           alfas <- x[[8]] 
+           alfas <- alfas/rowSums(alfas) 
+          } else {
+           alfas <- x[[7]] 
+          }
+
           pk <- x[[9]]
+
          } else {
           nrowss <- dim(x[[6]])[1]
-          alfas <- x[[6]]
-          alfas <- alfas/rowSums(alfas)
+
+           if(type=='lba'){
+           alfas <- x[[6]] 
+           alfas <- alfas/rowSums(alfas) 
+          } else {
+           alfas <- x[[5]] 
+          }  
+
           pk <- x[[6]] 
+
          }
         }
         )

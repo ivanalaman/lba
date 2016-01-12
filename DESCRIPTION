@@ -1,11 +1,11 @@
 Package: lba
 Title: Latent Budget Analysis for Compositional Data
-Version: 1.2
-Date: 2015-05-14
+Version: 1.3
+Date: 2016-01-12
 Author: Enio G. Jelihovschi <eniojelihovs@gmail.com>  and
         Ivan Bezerra Allaman <ivanalaman@gmail.com>
 Maintainer: Enio G. Jelihovschi <eniojelihovs@gmail.com>
-Depends: R (>= 3.1.2), MASS, alabama, plotrix, ca
+Depends: R (>= 3.2.3), MASS, alabama, plotrix, ca
 Description: Latent budget analysis is a method for the analysis of a two-way contingency table with an exploratory variable and a response variable. It is specially designed for compositional data.
 Encoding: latin1
 License: GPL (>= 2)

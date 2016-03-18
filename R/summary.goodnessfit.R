@@ -1,8 +1,6 @@
-print.goodnessfit <- function(x,
+summary.goodnessfit <- function(object,
                               digits = 2L,
                               ...){
-
- object <- x 
 
  if(class(object)[1]=='goodnessfit.lba.ls'){
 

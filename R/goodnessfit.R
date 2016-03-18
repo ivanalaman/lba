@@ -193,7 +193,7 @@ goodnessfit <- function(object){
                   'goodnessfit',
                   'list')
 
-  invisible(res)    
+  res    
 
  } else {
 
@@ -428,6 +428,21 @@ goodnessfit <- function(object){
                   'goodnessfit',
                   'list')
 
-  invisible(res)      
+  res      
  }
+}
+
+print.goodnessfit <- function(x,
+                              ...){
+ cat("Residual sum of square:\n")
+ res <- c(x$RSS1,
+          x$RSS)
+ names(res) <- c("RSS baseline",
+                 "RSS K budget")
+ print.default(res,
+               print.gap = 2L)
+
+ cat("\n")
+ invisible(x)
+
 }

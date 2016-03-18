@@ -292,21 +292,21 @@ lba.ls.fe <- function(obj          ,
  itmax.ala <- round(.1*itmax.ide)
  itmax.opt <- round(.9*itmax.ide)
   
- xab <- constrOptim.nl(par     = x0,
-                       fn      = wls,
-                       cA      = cA,
-                       cB      = cB,
-                       P       = P,
-                       K       = K,
-                       I       = I,
-                       J       = J,
-                       row.weights  = row.weights,
-                       col.weights  = col.weights,          
-                       heq     = heq,
-                       hin     = hin,
-                       control.outer=list(trace=trace.lba,
-                                          itmax=itmax.ala),
-                       control.optim=list(maxit=itmax.opt))
+ xab <- auglag(par     = x0,
+               fn      = wls,
+               cA      = cA,
+               cB      = cB,
+               P       = P,
+               K       = K,
+               I       = I,
+               J       = J,
+               row.weights  = row.weights,
+               col.weights  = col.weights,          
+               heq     = heq,
+               hin     = hin,
+               control.outer=list(trace=trace.lba,
+                                  itmax=itmax.ala),
+               control.optim=list(maxit=itmax.opt))
 
  y <- length(xab$par)- (I * K + J * K )
  A <- matrix(xab$par[(y+J*K +1):(y+J*K+I*K)], 

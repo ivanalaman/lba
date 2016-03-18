@@ -109,14 +109,15 @@ lba.matrix <- function(obj,
 
   }
 
- cl <- match.call()
-
- result$call <- cl
- result$what <- what
-
  class(result) <- c(class(result),
                     'lba.matrix',
                     'lba')
 
- invisible(result)
+ cl <- match.call()
+
+ result$call <- cl
+ result$what <- what
+ 
+ result
+
 }

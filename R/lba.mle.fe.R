@@ -1066,20 +1066,20 @@ constmleFEalabama <- function(obj,
  itmax.ala <- round(0.1*itmax.ide)
  itmax.opt <- round(0.9*itmax.ide)
  # 
- xab <- constrOptim.nl(par     = x0,
-                       fn      = mle,
-                       cA      = cA,
-                       cB      = cB,
-                       obj     = obj,
-                       P       = P,
-                       K       = K,
-                       I       = I,
-                       J       = J,
-                       heq     = heq,
-                       hin     = hin,
-                       control.outer=list(trace=trace.lba,
-                                          itmax=itmax.ala),
-                       control.optim=list(maxit=itmax.opt))
+ xab <- auglag(par     = x0,
+               fn      = mle,
+               cA      = cA,
+               cB      = cB,
+               obj     = obj,
+               P       = P,
+               K       = K,
+               I       = I,
+               J       = J,
+               heq     = heq,
+               hin     = hin,
+               control.outer=list(trace=trace.lba,
+                                  itmax=itmax.ala),
+               control.optim=list(maxit=itmax.opt))
  # 
  y <- length(xab$par)- (I * K + J * K )
  A <- matrix(xab$par[(y+J*K +1):(y+J*K+I*K)], ncol = K)

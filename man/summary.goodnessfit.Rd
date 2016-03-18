@@ -1,8 +1,8 @@
-\name{print.goodnessfit}
-\alias{print.goodnessfit}
+\name{summary.goodnessfit}
+\alias{summary.goodnessfit}
 
 \title{
-  Print Method for goodnessfit objects.
+  Summary Method for goodnessfit objects.
 }
 
 \description{
@@ -10,11 +10,12 @@
 }
 
 \usage{
-\method{print}{goodnessfit}(x, \dots)
+\method{summary}{goodnessfit}(object, digits = 2L, \dots)
 }
 
 \arguments{
-  \item{x}{A given object of the class \code{goodnessfit.lba.ls} and \code{goodnessfit.lba.mle}.}
+  \item{object}{A given object of the class \code{goodnessfit.lba.ls} and \code{goodnessfit.lba.mle}.}
+  \item{digits}{Number of decimal digits in the results.}      
   \item{\dots }{Potential further arguments (require by generic).}
 }
 
@@ -23,7 +24,7 @@
   Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})\cr
 }
 
-\seealso{\code{\link{summary.goodnessfit}}
+\seealso{\code{\link{goodnessfit}}
 }
 
 \examples{
@@ -35,7 +36,7 @@ ex1 <- lba(city ~ parties,
            votB,
            K = 2)
 exm <- goodnessfit(ex1)
-exm
+summary(exm)
 
 }
 

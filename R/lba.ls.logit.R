@@ -546,22 +546,22 @@ logit.A <- function(obj        ,
  itmax.ala <- round(0.1*itmax.ide)
  itmax.opt <- round(0.9*itmax.ide)
  # 
- xab <- constrOptim.nl(par         = x0,
-                       fn          = mw,
-                       cB          = cB,
-                       obj         = obj,
-                       logitA      = logitA,
-                       K           = K,
-                       I           = I,
-                       J           = J,
-                       S           = S,
-                       row.weights = row.weights, 
-                       col.weights = col.weights,
-                       heq         = heq,
-                       hin         = hin,
-                       control.outer = list(trace=trace.lba,
-                                            itmax = itmax.ala),
-                       control.optim = list(maxit = itmax.opt))
+ xab <- auglag(par         = x0,
+               fn          = mw,
+               cB          = cB,
+               obj         = obj,
+               logitA      = logitA,
+               K           = K,
+               I           = I,
+               J           = J,
+               S           = S,
+               row.weights = row.weights, 
+               col.weights = col.weights,
+               heq         = heq,
+               hin         = hin,
+               control.outer = list(trace=trace.lba,
+                                    itmax = itmax.ala),
+               control.optim = list(maxit = itmax.opt))
 
  y <- length(xab$par)- (J * K + S * K )
  omsk <- matrix(xab$par[(y+J*K +1):(y+J*K+S*K)], ncol = K)
@@ -857,22 +857,22 @@ logit.B <- function(obj        ,
  itmax.ala <- round(0.1*itmax.ide)
  itmax.opt <- round(0.9*itmax.ide)
 
- xab <- constrOptim.nl(par     = x0,
-                       fn      = mw,
-                       cA      = cA,
-                       logitB  = logitB,
-                       obj      = obj,
-                       K       = K,
-                       I       = I,
-                       J       = J,
-                       T       = T,
-                       row.weights = row.weights, 
-                       col.weights = col.weights,
-                       heq     = heq,
-                       hin     = hin,
-                       control.outer = list(trace=trace.lba,
-                                            itmax=itmax.ala),
-                       control.optim = list(maxit=itmax.opt))
+ xab <- auglag(par     = x0,
+               fn      = mw,
+               cA      = cA,
+               logitB  = logitB,
+               obj      = obj,
+               K       = K,
+               I       = I,
+               J       = J,
+               T       = T,
+               row.weights = row.weights, 
+               col.weights = col.weights,
+               heq     = heq,
+               hin     = hin,
+               control.outer = list(trace=trace.lba,
+                                    itmax=itmax.ala),
+               control.optim = list(maxit=itmax.opt))
 
  y <- length(xab$par)- (T*K+I*K)
  psitk <- matrix(xab$par[(y+I*K+1):(y+I*K+T*K)], ncol = K)

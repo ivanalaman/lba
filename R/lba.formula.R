@@ -182,15 +182,16 @@ lba.formula <- function(formula,
 
   }
 
- cl <- match.call()
-
- result$call <- cl
- result$what <- what
- result$tab <- tabs
-
  class(result) <- c(class(result),
                     'lba.formula',
                     'lba')
 
- invisible(result)
+ cl <- match.call() 
+
+ result$call  <- cl
+ result$what  <- what
+ result$tab   <- tabs
+
+ result
+
 }

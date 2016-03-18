@@ -116,14 +116,15 @@ lba.table <- function(obj,
 
   }
 
- cl <- match.call()
-
- result$call <- cl
- result$what <- what
 
  class(result) <- c(class(result),
                     'lba.table',
                     'lba')
 
- invisible(result)
+ cl <- match.call()
+
+ result$call <- cl
+ result$what <- what
+
+ result
 }

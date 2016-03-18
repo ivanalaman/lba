@@ -91,7 +91,7 @@ goodnessfit(object)
 }
 
 \seealso{
- \code{\link{print.goodnessfit}}, \code{\link{lba}}
+ \code{\link{summary.goodnessfit}}, \code{\link{lba}}
 }
 
 \examples{

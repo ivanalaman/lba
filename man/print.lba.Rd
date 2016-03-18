@@ -1,12 +1,8 @@
-\name{summary.lba}
-\alias{summary.lba}
-\alias{summary.lba.ls.fe}
-\alias{summary.lba.mle.fe}
-\alias{summary.lba.ls.logit}
-\alias{summary.lba.mle.logit}
+\name{print.lba}
+\alias{print.lba}
 
 \title{
-  Summary Method for \code{lba} objects.
+  Print Method for \code{lba} objects.
 }
 
 \description{
@@ -14,11 +10,11 @@
 }
 
 \usage{
-\method{summary}{lba}(object, digits = 2L, ...)
+\method{print}{lba}(x, digits = max(3L,getOption("digits") - 3L), ...)
 }
 
 \arguments{
-  \item{object}{A given object of the class \code{lba}, \code{lba.ls.fe}, \code{lba.mle.fe}, \code{lba.ls.logit} and \code{lba.mle.logit}.}
+  \item{x}{A given object of the class \code{lba}, \code{lba.ls.fe}, \code{lba.mle.fe}, \code{lba.ls.logit} and \code{lba.mle.logit}.}
   \item{digits}{Number of decimal digits in the results.}      
   \item{\dots }{Potential further arguments (require by generic).}
 }
@@ -39,7 +35,7 @@ data('votB')
 ex1 <- lba(city ~ parties,
            votB,
            K = 2)
-summary(ex1)
+ex1
  
 }
 

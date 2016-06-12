@@ -9,11 +9,15 @@ import(
  MASS,
  alabama,
  plotrix,
- ca
+ ca,
+ utils,
+ stats,
+ graphics
 )
 
+#export(lba, goodnessfit)
+
 # S3 methods
-S3method(lba, default) 
 S3method(lba, formula)
 S3method(lba, matrix)
 S3method(lba, table)
@@ -26,12 +30,39 @@ S3method(lba, mle.logit)
 S3method(lba, mle.logit.A)
 S3method(lba, mle.logit.B)
 S3method(lba, mle.logit.AB)
+
+S3method(goodnessfit, lba.ls)
+S3method(goodnessfit, lba.ls.fe)
+S3method(goodnessfit, lba.ls.logit)
+S3method(goodnessfit, lba.mle)
+S3method(goodnessfit, lba.mle.fe)
+S3method(goodnessfit, lba.mle.logit)
+
 S3method(plot, lba)
-S3method(print,   goodnessfit)
-S3method(print,   lba)
-S3method(summary, goodnessfit)
-S3method(summary, lba)
+
+S3method(print, goodnessfit.lba.ls)
+S3method(print, goodnessfit.lba.ls.fe)
+S3method(print, goodnessfit.lba.ls.logit)
+S3method(print, goodnessfit.lba.mle)
+S3method(print, goodnessfit.lba.mle.fe)
+S3method(print, goodnessfit.lba.mle.logit)
+
+S3method(print, lba.ls)
+S3method(print, lba.ls.fe)
+S3method(print, lba.ls.logit)
+S3method(print, lba.mle)
+S3method(print, lba.mle.fe)
+S3method(print, lba.mle.logit)
+
+S3method(summary, goodnessfit.lba.ls)
+S3method(summary, goodnessfit.lba.ls.fe)
+S3method(summary, goodnessfit.lba.ls.logit)
+S3method(summary, goodnessfit.lba.mle)
+S3method(summary, goodnessfit.lba.mle.fe)
+S3method(summary, goodnessfit.lba.mle.logit)
+S3method(summary, lba.ls)
 S3method(summary, lba.ls.fe)
 S3method(summary, lba.ls.logit)
+S3method(summary, lba.mle)
 S3method(summary, lba.mle.fe)
 S3method(summary, lba.mle.logit)

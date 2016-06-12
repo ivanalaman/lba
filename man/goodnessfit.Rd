@@ -1,5 +1,12 @@
 \name{goodnessfit}
 \alias{goodnessfit}
+\alias{goodnessfit.default}
+\alias{goodnessfit.lba.ls}
+\alias{goodnessfit.lba.ls.fe}
+\alias{goodnessfit.lba.ls.logit}
+\alias{goodnessfit.lba.mle}
+\alias{goodnessfit.lba.mle.fe}
+\alias{goodnessfit.lba.mle.logit}
 
 \title{Goodness of Fit results for Latent Budget Analysis}
 
@@ -7,11 +14,33 @@
 }
 
 \usage{
-goodnessfit(object)
+goodnessfit(object,...)
 }
 
+## S3 methods
+\method{goodnessfit}{default}(x, \cdots)
+
+\method{goodnessfit}{lba.ls}(x,
+    \dots)
+    
+\method{goodnessfit}{lba.ls.fe}(x,
+    \dots)    
+    
+\method{goodnessfit}{lba.ls.logit}(x,
+    \dots)
+    
+\method{goodnessfit}{lba.mle}(x,
+    \dots)    
+
+\method{goodnessfit}{lba.mle.fe}(x,
+    \dots)    
+ 
+\method{goodnessfit}{lba.mle.logit}(x,
+    \dots) 
+    
 \arguments{
  \item{object}{An object of one of following classes: \code{lba.ls}, \code{lba.ls.fe}, \code{lba.ls.logit}, \code{lba.mle}, \code{lba.mle.fe}, \code{lba.mle.logit}}
+ \item{\dots}{Potential further arguments (required by generic).}
 }
 
 \value{
@@ -64,9 +93,6 @@ goodnessfit(object)
  \item{impRSS   }{Improvement of RSS}
  \item{impPB    }{Improvement per budget}
  \item{impDF    }{Average improvement per degree of freedom}
- \item{wRSS1    }{Weighted residual sum of square of the base model}
- \item{wRSS     }{Weighted residual sum of square of the full model}
- \item{impwRSS  }{Improvement of wRSS}
  \item{D1       }{Index of dissimilarity of the base model}
  \item{D        }{Index of dissimilarity of the full model}
  \item{pccb     }{Proportion of correctly classified data of the base model}

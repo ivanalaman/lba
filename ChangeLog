@@ -1,25 +1,21 @@
+2016-06-11 vs. 1.5 - Ivan Bezerra Allaman <ivanalaman$gmail.com>
+ * Bug in the lba.formula function corrected. The instruction length(length(var.row1)) in the line 69 was wrong. Changed to length(var.row1).
+ * Update code of the print.lba, print.goodnessfit, summary.goodnessfit and summary.lba functions 
+
 2016-03-17 vs. 1.4 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
-        * Included print method to lba functions.
-	* Included summary method to goodnessfit function.
-        * Changed constrOptim.nl function to auglag function.
+ * Included print method to lba functions.
+ * Included summary method to goodnessfit function.
+ * Changed constrOptim.nl function to auglag function.
 
 2016-01-12 vs. 1.3 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
-        * Minor corrections in file lba.mle.R. The zeroes of the object were
-	change into 1e-4 in the line 19.
-        * Minor corrections in file plot.lba.R. For type "corr" the latent
-	components were chosen from matrix Boi and when .fe or .logit the latent
-	components were chosen from matrix B. 
+ * Minor corrections in file lba.mle.R. The zeroes of the object were change into 1e-4 in the line 19.
+ * Minor corrections in file plot.lba.R. For type "corr" the latent components were chosen from matrix Boi and when .fe or .logit the latent components were chosen from matrix B. 
 
 2015-06-25 vs. 1.2 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
-        * Minor corrections in file lba.Rd. 
-	* Minor corrections in the lba.mle.fe and lba.mle functions. Included rescB
-	in resc object and changed Aoi and Boi by A and B in the Pij object
-	respectively.
-	* Correction in the goodnessfit function. Changed G2 by G2b in the
-	260, 263, 277 and 279 rows. Changed dfd by dfdb in the 287 and 288
-	rows.
+ * Minor corrections in file lba.Rd. 
+ * Minor corrections in the lba.mle.fe and lba.mle functions. Included rescB in resc object and changed Aoi and Boi by A and B in the Pij object respectively.
+ * Correction in the goodnessfit function. Changed G2 by G2b in the 260, 263, 277 and 279 rows. Changed dfd by dfdb in the 287 and 288 rows.
 
 2015-04-29 vs. 1.1 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
-        * The plot function was corrected. Rescaled latent components were
-	placed instead of latent components. 
-	* The rescaled latent component were added to lba.ls.fe,lba.ls.logit,lba.mle.fe and lba.mle.logit, therefore the summary was also changed.
+ * The plot function was corrected. Rescaled latent components were placed instead of latent components. 
+ * The rescaled latent component were added to lba.ls.fe,lba.ls.logit,lba.mle.fe and lba.mle.logit, therefore the summary was also changed.

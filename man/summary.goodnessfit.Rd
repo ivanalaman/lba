@@ -1,5 +1,10 @@
 \name{summary.goodnessfit}
-\alias{summary.goodnessfit}
+\alias{summary.goodnessfit.lba.ls}
+\alias{summary.goodnessfit.lba.ls.fe}
+\alias{summary.goodnessfit.lba.ls.logit}
+\alias{summary.goodnessfit.lba.mle}
+\alias{summary.goodnessfit.lba.mle.fe}
+\alias{summary.goodnessfit.lba.mle.logit}
 
 \title{
   Summary Method for goodnessfit objects.
@@ -15,7 +20,7 @@
 
 \arguments{
   \item{object}{A given object of the class \code{goodnessfit.lba.ls} and \code{goodnessfit.lba.mle}.}
-  \item{digits}{Number of decimal digits in the results.}      
+  \item{digits}{Number of decimal digits in the results. The default is 2.}      
   \item{\dots }{Potential further arguments (require by generic).}
 }
 

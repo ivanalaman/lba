@@ -66,12 +66,16 @@ lba.formula <- function(formula,
  tabs <- do.call('rbind',
                  aux.tables1)
 
- aux.namesR <- ifelse(length(length(var.row1))==1,
-                      sapply(var.row1,
-                             function(x)levels(data[[x]]),
-                             simplify=F),
-                      sapply(var.row1,
-                             function(x)levels(data[[x]])))
+ #  ifelse(length(var.row1)==1,
+ #         aux.namesR <- sapply(var.row1,
+ #                              function(x)levels(data[[x]]),
+ #                              simplify=F),
+ #         aux.namesR <- sapply(var.row1,
+ #                              function(x)levels(data[[x]])))
+
+ aux.namesR <- sapply(var.row1,
+                      function(x)levels(data[[x]]),
+                      simplify=F) 
 
  aux.namesR1 <- sapply(aux.namesR,
                        length)

@@ -1,21 +1,26 @@
 \name{print.lba}
-\alias{print.lba}
+\alias{print.lba.ls}
+\alias{print.lba.ls.fe}
+\alias{print.lba.ls.logit}
+\alias{print.lba.mle}
+\alias{print.lba.mle.fe}
+\alias{print.lba.mle.logit}
 
 \title{
   Print Method for \code{lba} objects.
 }
 
 \description{
-  Returns (and prints) a summary list for objects of class \code{lba}, \code{lba.ls.fe}, \code{lba.mle.fe}, \code{lba.ls.logit} and \code{lba.mle.logit}.
+  Returns (and prints) a summary list for objects of class \code{lba.ls}, \code{lba.ls.fe}, \code{lba.ls.logit}, \code{lba.mle}, \code{lba.mle.fe}, and \code{lba.mle.logit}.
 }
 
 \usage{
-\method{print}{lba}(x, digits = max(3L,getOption("digits") - 3L), ...)
+\method{print}{lba}(x, digits = 3L, ...)
 }
 
 \arguments{
   \item{x}{A given object of the class \code{lba}, \code{lba.ls.fe}, \code{lba.mle.fe}, \code{lba.ls.logit} and \code{lba.mle.logit}.}
-  \item{digits}{Number of decimal digits in the results.}      
+  \item{digits}{Number of decimal digits in the results. The default is 3.}      
   \item{\dots }{Potential further arguments (require by generic).}
 }
 

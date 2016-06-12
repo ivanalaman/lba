@@ -269,7 +269,7 @@ used; \code{"mle"} when maximum likelihood method is used. The default is \code{
 }
 
 \seealso{
- \code{\link{goodnessfit}}, \code{\link{summary.lba}}, \code{\link{plot.lba}}
+ \code{\link{goodnessfit}}, \code{\link{summary.lba.ls}},\code{\link{summary.lba.mle}},\code{\link{plot.lba}}
 }
 
 \examples{

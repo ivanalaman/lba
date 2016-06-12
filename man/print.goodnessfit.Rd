@@ -15,7 +15,18 @@
 }
 
 \usage{
-\method{print}{goodnessfit}(x, digits=3L, \dots)
+\method{print}{goodnessfit.lba.ls}(x, digits=3L, \dots)
+
+\method{print}{goodnessfit.lba.ls.fe}(x, digits=3L, \dots) 
+
+\method{print}{goodnessfit.lba.ls.logit}(x, digits=3L, \dots)  
+
+\method{print}{goodnessfit.lba.mle}(x, digits=3L, \dots)   
+
+\method{print}{goodnessfit.lba.mle.fe}(x, digits=3L, \dots)    
+
+\method{print}{goodnessfit.lba.mle.logit}(x, digits=3L, \dots)     
+
 }
 
 \arguments{
@@ -29,8 +40,9 @@
   Ivan Bezerra Allaman (\email{ivanalaman@gmail.com})\cr
 }
 
-\seealso{\code{\link{summary.goodnessfit}}
-}
+\seealso{
+  \code{\link{summary.goodnessfit.lba.ls}}, \code{\link{summary.goodnessfit.lba.mle}}
+  }
 
 \examples{
 data('votB')

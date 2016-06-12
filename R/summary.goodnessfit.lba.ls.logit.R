@@ -67,8 +67,7 @@ summary.goodnessfit.lba.ls.logit <- function(object,
   res <- list(stabasic=stabasic,
               otherm=otherm,
               diss=diss,
-              madi=madi,
-              classob=classob)
+              madi=madi)
 
   cat("BASIC STATISTICS:\n\n")
 

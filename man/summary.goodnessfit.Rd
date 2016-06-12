@@ -15,7 +15,17 @@
 }
 
 \usage{
-\method{summary}{goodnessfit}(object, digits = 2L, \dots)
+\method{summary}{goodnessfit.lba.ls}(object, digits = 2L, \dots)
+
+\method{summary}{goodnessfit.lba.ls.fe}(object, digits = 2L, \dots) 
+
+\method{summary}{goodnessfit.lba.ls.logit}(object, digits = 2L, \dots)  
+
+\method{summary}{goodnessfit.lba.mle}(object, digits = 2L, \dots)   
+
+\method{summary}{goodnessfit.lba.mle.fe}(object, digits = 2L, \dots)    
+
+\method{summary}{goodnessfit.lba.mle.logit}(object, digits = 2L, \dots)     
 }
 
 \arguments{

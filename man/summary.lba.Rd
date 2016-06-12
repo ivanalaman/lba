@@ -15,7 +15,17 @@
 }
 
 \usage{
-\method{summary}{lba}(object, digits = 2L, \cdots)
+\method{summary}{lba.ls}(object, digits = 2L, \dots)
+
+\method{summary}{lba.ls.fe}(object, digits = 2L, \dots) 
+
+\method{summary}{lba.ls.logit}(object, digits = 2L, \dots)  
+
+\method{summary}{lba.mle}(object, digits = 2L, \dots)   
+
+\method{summary}{lba.mle.fe}(object, digits = 2L, \dots)    
+
+\method{summary}{lba.mle.logit}(object, digits = 2L, \dots)     
 }
 
 \arguments{

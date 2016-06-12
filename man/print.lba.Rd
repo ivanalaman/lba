@@ -15,7 +15,17 @@
 }
 
 \usage{
-\method{print}{lba}(x, digits = 3L, ...)
+\method{print}{lba.ls}(x, digits = 3L, ...)
+
+\method{print}{lba.ls.fe}(x, digits = 3L, ...) 
+
+\method{print}{lba.ls.logit}(x, digits = 3L, ...)  
+
+\method{print}{lba.mle}(x, digits = 3L, ...)   
+
+\method{print}{lba.mle.fe}(x, digits = 3L, ...)    
+
+\method{print}{lba.mle.logit}(x, digits = 3L, ...)     
 }
 
 \arguments{

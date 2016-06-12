@@ -15,29 +15,23 @@
 
 \usage{
 goodnessfit(object,...)
-}
 
 ## S3 methods
-\method{goodnessfit}{default}(x, \cdots)
+\method{goodnessfit}{default}(object, \dots)
 
-\method{goodnessfit}{lba.ls}(x,
-    \dots)
+\method{goodnessfit}{lba.ls}(object, \dots)
     
-\method{goodnessfit}{lba.ls.fe}(x,
-    \dots)    
+\method{goodnessfit}{lba.ls.fe}(object, \dots)    
     
-\method{goodnessfit}{lba.ls.logit}(x,
-    \dots)
+\method{goodnessfit}{lba.ls.logit}(object, \dots)
     
-\method{goodnessfit}{lba.mle}(x,
-    \dots)    
+\method{goodnessfit}{lba.mle}(object, \dots)    
 
-\method{goodnessfit}{lba.mle.fe}(x,
-    \dots)    
+\method{goodnessfit}{lba.mle.fe}(object, \dots)    
  
-\method{goodnessfit}{lba.mle.logit}(x,
-    \dots) 
-    
+\method{goodnessfit}{lba.mle.logit}(object, \dots) 
+}
+
 \arguments{
  \item{object}{An object of one of following classes: \code{lba.ls}, \code{lba.ls.fe}, \code{lba.ls.logit}, \code{lba.mle}, \code{lba.mle.fe}, \code{lba.mle.logit}}
  \item{\dots}{Potential further arguments (required by generic).}
@@ -117,7 +111,7 @@ goodnessfit(object,...)
 }
 
 \seealso{
- \code{\link{summary.goodnessfit}}, \code{\link{lba}}
+ \code{\link{summary.goodnessfit.lba.ls}},  \code{\link{summary.goodnessfit.lba.mle}},\code{\link{lba}}
 }
 
 \examples{

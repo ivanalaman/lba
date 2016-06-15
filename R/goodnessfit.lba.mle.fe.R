@@ -12,6 +12,7 @@ goodnessfit.lba.mle.fe <- function(object,...){
          N <- object$tab,
          N <-  eval(getCall(object)$obj))
 
+  N[N==0] <- 1e-4
   G2b <- 2 * sum(N * log(N/(base[[2]] * rowSums(N))))
   chi2b <- sum(((N - base[[2]] * rowSums(N))^2)/N) 
 

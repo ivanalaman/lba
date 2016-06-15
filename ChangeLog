@@ -1,3 +1,6 @@
+2016-06-14 vs. 1.6 - Ivan Bezerra Allaman <ivanalaman$gmail.com>
+ * Bug in goodnessfit functions of the mle family. Add row  N[N==0] <- 1e-4.
+
 2016-06-11 vs. 1.5 - Ivan Bezerra Allaman <ivanalaman$gmail.com>
  * Bug in the lba.formula function corrected. The instruction length(length(var.row1)) in the line 69 was wrong. Changed to length(var.row1).
  * Update code of the print.lba, print.goodnessfit, summary.goodnessfit and summary.lba functions 

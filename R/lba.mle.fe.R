@@ -25,6 +25,8 @@ lba.mle.fe <- function(obj      ,
  I <- nrow(obj)
  J <- ncol(obj)
 
+ obj[obj==0] <- 1e-4 
+ 
  P <- obj/rowSums(obj)
  #-----------------------------------------------------------------------------
 
@@ -1046,17 +1048,19 @@ constmleFEalabama <- function(obj,
  } else { ma <- 0 }                                     
 
  if(!is.null(cB)){
-  if(maxcb > 1) { #there are equality parameters in cbjk
-   #list containing in each element the positions of the equality parameters
-   #of matrix B that are equal among them.
-   bl <- list()
-   for(i in 2:max(cB, na.rm=TRUE)){
-    bl[[i-1]] <- which(cB==i, arr.ind=TRUE)
-    bl[[i-1]] <- bl[[i-1]][order(bl[[i-1]][,1],bl[[i-1]][,2]),]
+   if(maxcb > 1) { #there are equality parameters in cbjk
+     #list containing in each element the positions of the equality parameters
+     #of matrix B that are equal among them.
+     bl <- list()
+     for(i in 2:max(cB, na.rm=TRUE)){
+       bl[[i-1]] <- which(cB==i, arr.ind=TRUE)
+       bl[[i-1]] <- bl[[i-1]][order(bl[[i-1]][,1],bl[[i-1]][,2]),]
+     }
+     mb <- sum(sapply(bl, function(x) nrow(x))) 
+   } else { 
+     mb <- 0 
    }
-   mb <- sum(sapply(bl, function(x) nrow(x))) 
-  }
- } else { mb <- 0 }
+ }
 
  m <- ma + mb
  a <- rep(1e-6,m)
@@ -1066,7 +1070,7 @@ constmleFEalabama <- function(obj,
  itmax.ala <- round(0.1*itmax.ide)
  itmax.opt <- round(0.9*itmax.ide)
  # 
- xab <- auglag(par     = x0,
+ xab <- constrOptim.nl(par     = x0,
                fn      = mle,
                cA      = cA,
                cB      = cB,

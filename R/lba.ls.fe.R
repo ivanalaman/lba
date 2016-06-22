@@ -292,7 +292,7 @@ lba.ls.fe <- function(obj          ,
  itmax.ala <- round(.1*itmax.ide)
  itmax.opt <- round(.9*itmax.ide)
   
- xab <- auglag(par     = x0,
+ xab <- constrOptim.nl(par     = x0,
                fn      = wls,
                cA      = cA,
                cB      = cB,

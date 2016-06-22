@@ -508,7 +508,7 @@ lba.mle.logit.A <- function(obj       ,
  itmax.ala <- round(.1*itmax.ide)
  itmax.opt <- round(.9*itmax.ide)
 
- xab <- auglag(par         = x0,
+ xab <- constrOptim.nl(par         = x0,
                fn          = mw,
                cB          = cB,
                logitA      = logitA,
@@ -804,7 +804,7 @@ lba.mle.logit.B <- function(obj       ,
  itmax.ala <- round(.1*itmax.ide)
  itmax.opt <- round(.9*itmax.ide)
 
- xab <- auglag(par     = x0,
+ xab <- constrOptim.nl(par     = x0,
                fn      = mw,
                cA      = cA,
                logitB  = logitB,

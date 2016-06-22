@@ -26,7 +26,7 @@ constrainAB <- function(cA)
 
  if(any(apply(cA,
               1, 
-              function(x) length(x[!is.na(x) & x < 1])) == (K-1))) {
+              function(x) length(x[!is.na(x) & x <= 1])) == (K-1))) {
 
   stop("Any row of the fixed constraints mixing parameter matrix with K-1 
        elements must be completed so that it will add up to one")
@@ -44,7 +44,7 @@ constrainAB <- function(cA)
                                1,
                                function(x) x%*%rep(1,K)) != 'NA')
 
- if(all(aux1 < 1)){
+ if(all(aux1 <= 1)){
 
   aux1 <- matrix(logical(0),
                  ncol = K)

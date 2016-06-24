@@ -1048,6 +1048,7 @@ constmleFEalabama <- function(obj,
  } else { ma <- 0 }                                     
 
  if(!is.null(cB)){
+
    if(maxcb > 1) { #there are equality parameters in cbjk
      #list containing in each element the positions of the equality parameters
      #of matrix B that are equal among them.
@@ -1056,11 +1057,20 @@ constmleFEalabama <- function(obj,
        bl[[i-1]] <- which(cB==i, arr.ind=TRUE)
        bl[[i-1]] <- bl[[i-1]][order(bl[[i-1]][,1],bl[[i-1]][,2]),]
      }
+
      mb <- sum(sapply(bl, function(x) nrow(x))) 
+
    } else { 
+
      mb <- 0 
+
    }
+ } else {
+
+   mb <- 0
+
  }
+
 
  m <- ma + mb
  a <- rep(1e-6,m)

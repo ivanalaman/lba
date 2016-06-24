@@ -1,7 +1,12 @@
+2016-06-24 vs. 1.8 - Ivan Bezerra Allaman <ivanalaman@gmail.com> 
+ * Fixed bug in constmleFEalabama. Added brackets in conditions cB and else
+ related to !is.null(cB).
+ * Correction in the chi2b object within goodnessfit.mle functions.
+
 2016-06-22 vs. 1.7 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
  * Added row obj[obj==0] <- 1e-4 in lba.mle.fe function.
  * Fixed bug in constrainAB function. Corrected aux1 < 1 to aux1 <=1.
- * Fiexed bug in constmleFEalabama. Added brackets in conditions cB.
+ * Fixed bug in constmleFEalabama. Added brackets in conditions cB.
  * The function auglag were changed to constrOptim.nl in all functions of the
  package.
 

@@ -18,7 +18,9 @@ goodnessfit.lba.mle.logit <- function(object,...){
 
   N[N==0] <- 1e-4
   G2b <- 2 * sum(N * log(N/(base[[2]] * rowSums(N))))
-  chi2b <- sum(((N - base[[2]] * rowSums(N))^2)/N) 
+
+  Nexpected <-  base[[2]] * rowSums(N)
+  chi2b <- sum(((N - Nexpected )^2)/Nexpected)  
 
   I <- nrow(object[[4]])
   J <- nrow(object[[5]])
@@ -29,7 +31,9 @@ goodnessfit.lba.mle.logit <- function(object,...){
   pip <- rowSums(N)/sum(N)
 
   G2 <- 2 * sum(N * log(N/(pij * rowSums(N))))
-  chi2 <- sum(((N - pij * rowSums(N))^2)/N) 
+
+  pexpected <-  pij * rowSums(N)
+  chi2 <- sum(((N - pexpected)^2)/pexpected) 
 
   dfd <- (I-K)*(J-K) #degrees of freedom identified solutions 
 

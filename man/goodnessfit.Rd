@@ -34,11 +34,11 @@ goodnessfit(object,...)
 
 \arguments{
  \item{object}{An object of one of following classes: \code{lba.ls}, \code{lba.ls.fe}, \code{lba.ls.logit}, \code{lba.mle}, \code{lba.mle.fe}, \code{lba.mle.logit}}
- \item{\dots}{Potential further arguments (required by generic).}
+ \item{\dots}{ Further arguments (required by generic).}
 }
 
 \value{
-  The \code{goodnessfit} function to the method \code{lba.mle}, \code{lba.mle.fe} and \code{lba.mle.logit} returns a list with the slots:
+  The \code{goodnessfit} function of the method \code{lba.mle}, \code{lba.mle.fe} and \code{lba.mle.logit} returns a list with the slots:
       
  \item{dfdb     }{Degrees of freedom of the base model}
  \item{dfd      }{Degrees of freedom of the full model}
@@ -78,7 +78,7 @@ goodnessfit(object,...)
  \item{impPBsat }{Improvement mean angular deviation per budget}
  \item{impDFsat }{Average improvement mean angular deviation per degree of freedom}
 
- The \code{goodnessfit} function to the method \code{lba.ls}, \code{lba.ls.fe} and \code{lba.ls.logit} returns a list with the slots:
+ The \code{goodnessfit} function of the method \code{lba.ls}, \code{lba.ls.fe} and \code{lba.ls.logit} returns a list with the slots:
 
  \item{dfdb     }{Degrees of freedom of the base model}
  \item{dfd      }{Degrees of freedom of the full model}
@@ -119,7 +119,7 @@ data('votB')
 
 # Using LS method (default) without constraint
 # K = 2
-ex1 <- lba(city ~ parties,
+ex1 <- lba(parties ~ city,
            votB,
            K = 2)
 
@@ -128,11 +128,49 @@ gx1
 
 # Using MLE method without constraint
 # K = 2
-exm <- lba(city ~ parties,
+exm <- lba(parties ~ city,
            votB,
            K = 2,
            method='mle')
 
 gxm <- goodnessfit(exm)
 gxm
+
+# Using LS method (default) with LOGIT constrain
+data('housing')
+
+# Make cross-table to matrix design.
+tbh <- xtabs(value ~ Influence + Housing, housing)
+
+Xis <- model.matrix(~ Housing*Influence,
+                    tbh,
+                    contrasts=list(Housing='contr.sum',
+                                   Influence='contr.sum'))
+
+tby <- xtabs(value ~ Satisfaction + Contact, housing)
+
+Yis <- model.matrix(~ Satisfaction*Contact,
+                    tby,
+                    contrasts=list(Satisfaction='contr.sum',
+                                   Contact='contr.sum'))[,-1]
+
+S <- 12
+T <- 5
+
+tabs <- xtabs(value ~ interaction(Housing,
+                                  Influence) + interaction(Satisfaction,
+                                  Contact),
+              housing)
+\dontrun{
+ex2 <- lba(tabs,
+           K = 2,
+           logitA = Xis,
+           logitB = Yis,
+           S = S,
+           T = T,
+           trace.lba=FALSE) 
+
+gex2 <- goodnessfit(ex2)
+gex2
+}
 }

@@ -25,99 +25,121 @@ lba.matrix <- function(obj,
                                        'outer'),
                        ...) 
 {
- switch(match.arg(what),
-        inner = what <- 'inner',
-        outer = what <- 'outer')
+  switch(match.arg(what),
+         inner = what <- 'inner',
+         outer = what <- 'outer')
 
- switch(match.arg(method),
-        ls = method <- 'ls',
-        mle = method <- 'mle')
+  switch(match.arg(method),
+         ls = method <- 'ls',
+         mle = method <- 'mle')
 
- if(is.null(cA) & is.null(cB) & is.null(logitA) & is.null(logitB)){
+  if(is.null(cA) & is.null(cB) & is.null(logitA) & is.null(logitB)){
 
-  class(obj)  <- method
+    class(obj)  <- method
 
-  result <- lba(obj,
-                A           =  A,           
-                B           =  B,
-                K           =  K,
-                row.weights =  row.weights, 
-                col.weights =  col.weights, 
-                tolG        =  tolG,        
-                tolA        =  tolA,        
-                tolB        =  tolB,        
-                itmax.unide =  itmax.unide,
-                itmax.ide   =  itmax.ide,
-                trace.lba   =  trace.lba,  
-                toltype     =  toltype,
-                what        =  what,
-                ...) 
+    result <- lba(obj,
+                  A           =  A,           
+                  B           =  B,
+                  K           =  K,
+                  row.weights =  row.weights, 
+                  col.weights =  col.weights, 
+                  tolG        =  tolG,        
+                  tolA        =  tolA,        
+                  tolB        =  tolB,        
+                  itmax.unide =  itmax.unide,
+                  itmax.ide   =  itmax.ide,
+                  trace.lba   =  trace.lba,  
+                  toltype     =  toltype,
+                  what        =  what,
+                  ...) 
 
- } else 
+  } else 
 
-  if((!is.null(cA) | !is.null(cB)) & is.null(logitA) & is.null(logitB)){
+    if((!is.null(cA) | !is.null(cB)) & is.null(logitA) & is.null(logitB)){
 
-   class(obj) <- paste(method,
-                       'fe',
-                       sep='.')
+      class(obj) <- paste(method,
+                          'fe',
+                          sep='.')
 
-   result <- lba(obj,
-                 A           =  A,           
-                 B           =  B,
-                 K           =  K,
-                 cA          =  cA,          
-                 cB          =  cB,           
-                 row.weights =  row.weights, 
-                 col.weights =  col.weights, 
-                 tolG        =  tolG,        
-                 tolA        =  tolA,        
-                 tolB        =  tolB,        
-                 itmax.ide   =  itmax.ide,
-                 trace.lba   =  trace.lba,  
-                 toltype     =  toltype,
-                 what        =  what,
-                 ...)
+      result <- lba(obj,
+                    A           =  A,           
+                    B           =  B,
+                    K           =  K,
+                    cA          =  cA,          
+                    cB          =  cB,           
+                    row.weights =  row.weights, 
+                    col.weights =  col.weights, 
+                    tolG        =  tolG,        
+                    tolA        =  tolA,        
+                    tolB        =  tolB,        
+                    itmax.ide   =  itmax.ide,
+                    trace.lba   =  trace.lba,  
+                    toltype     =  toltype,
+                    what        =  what,
+                    ...)
 
-  } else {
+    } else {
 
-   class(obj) <- paste(method,
-                       'logit',
-                       sep='.')
+      class(obj) <- paste(method,
+                          'logit',
+                          sep='.')
 
-   result <- lba(obj,
-                 A           =  A,           
-                 B           =  B,
-                 K           =  K,
-                 cA          =  cA,
-                 cB          =  cB,
-                 logitA      =  logitA,      
-                 logitB      =  logitB,      
-                 omsk        =  omsk,        
-                 psitk       =  psitk,       
-                 S           =  S,           
-                 T           =  T,           
-                 row.weights =  row.weights, 
-                 col.weights =  col.weights, 
-                 tolG        =  tolG,        
-                 tolA        =  tolA,        
-                 tolB        =  tolB,        
-                 itmax.ide   =  itmax.ide,
-                 trace.lba   =  trace.lba,  
-                 toltype     =  toltype,
-                 what        =  what,
-                 ...)
+      result <- lba(obj,
+                    A           =  A,           
+                    B           =  B,
+                    K           =  K,
+                    cA          =  cA,
+                    cB          =  cB,
+                    logitA      =  logitA,      
+                    logitB      =  logitB,      
+                    omsk        =  omsk,        
+                    psitk       =  psitk,       
+                    S           =  S,           
+                    T           =  T,           
+                    row.weights =  row.weights, 
+                    col.weights =  col.weights, 
+                    tolG        =  tolG,        
+                    tolA        =  tolA,        
+                    tolB        =  tolB,        
+                    itmax.ide   =  itmax.ide,
+                    trace.lba   =  trace.lba,  
+                    toltype     =  toltype,
+                    what        =  what,
+                    ...)
 
+    }
+
+  n_dim <- length(result$pk)-1
+
+  if(n_dim == 1){
+
+    class(result) <- c('lba.1d',
+                       class(result),
+                       'lba.matrix',
+                       'lba')
   }
 
- class(result) <- c(class(result),
-                    'lba.matrix',
-                    'lba')
+  if(n_dim == 2){
 
- cl <- match.call()
+    class(result) <- c('lba.2d',
+                       class(result),
+                       'lba.matrix',
+                       'lba')
+  }
 
- result$call <- cl
- result$what <- what
- 
- result
+  if(n_dim >= 3){
+
+    class(result) <- c('lba.3d',
+                       class(result),
+                       'lba.matrix',
+                       'lba')
+  } 
+
+  cl <- match.call()
+
+  result$call <- cl
+  result$what <- what
+
+  result
 
 }

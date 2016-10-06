@@ -54,7 +54,7 @@ goodnessfit.lba.ls <- function(object,...){
   RSS <-  sum((V%*%(pij - P)%*%W)^2)
 
   #improvement
-  impRSS <- (RSS1 - RSS)/RSS1 
+  impRSS <- RSS1 - RSS 
 
   # improvement per budget page 164
   impPB <- RSS1/min(I,J)

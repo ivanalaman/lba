@@ -1,7 +1,9 @@
 goodnessfit.lba.mle.logit <- function(object,...){
 
+  S <- NULL
+  rm(S)
   stopifnot(inherits(object,'lba'))
-
+  
   base <- update(object,
                  logitA = NULL,
                  logitB = NULL,
@@ -35,7 +37,27 @@ goodnessfit.lba.mle.logit <- function(object,...){
   pexpected <-  pij * rowSums(N)
   chi2 <- sum(((N - pexpected)^2)/pexpected) 
 
-  dfd <- (I-K)*(J-K) #degrees of freedom identified solutions 
+  recu_S <- eval(getCall(object)$S)
+  recu_T <- eval(getCall(object)$T)
+  
+  if(!is.null(recu_S) & is.null(recu_T)){
+  
+  dfd <- (I-K)*(J-1)+(K-recu_S)*(K-1)
+  
+  }
+  
+  if(is.null(recu_S) & !is.null(recu_T)){
+  
+  dfd <- I*(J-K)-K*(K-T-1)
+  
+  }
+  
+  if(!is.null(recu_S) & !is.null(recu_T)){
+  
+  dfd <- I*(J-1)-S*(K-1)-T*K
+  
+  }
+ 
 
   #K = 1  baseline model
   dfdb <- (I-1)*(J-1)
@@ -53,6 +75,15 @@ goodnessfit.lba.mle.logit <- function(object,...){
 
   prochi1 <- 1-pchisq(chi2b, 
                       df = dfdb) #p-value of chi2 
+                      
+  #improvement
+  impG_mle <- abs(G2b - G2) 
+
+  # improvement per budget page 164
+  impPB_mle <- G2b/min(I,J)
+
+  #average improvement per degree of freedom
+  impDF_mle <- G2b/((I-1)*(J-1))                     
 
   #==============================================================================
   #          Low value  GFS
@@ -89,7 +120,7 @@ goodnessfit.lba.mle.logit <- function(object,...){
   RSS <- sum((pij - P)^2)
 
   #improvement
-  impRSS <- (RSS1 - RSS)/RSS1
+  impRSS <- RSS1 - RSS
 
   # improvement per budget page 164
   impPB <- RSS1/min(I,J)

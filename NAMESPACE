@@ -9,13 +9,20 @@ import(
  MASS,
  alabama,
  plotrix,
- ca,
+ scatterplot3d,
  utils,
  stats,
  graphics
 )
 
+importFrom("grDevices", "rgb")
+importFrom("rgl", "plot3d")
+importFrom("rgl", "pch3d")
+importFrom("rgl", "text3d")
+  
 export(lba, goodnessfit)
+export(lba, plotlba)
+export(lba, plotcorr)
 
 # S3 methods
 S3method(lba, formula)
@@ -38,7 +45,11 @@ S3method(goodnessfit, lba.mle)
 S3method(goodnessfit, lba.mle.fe)
 S3method(goodnessfit, lba.mle.logit)
 
-S3method(plot, lba)
+S3method(plotlba, lba.1d)
+S3method(plotlba, lba.2d)
+S3method(plotcorr, lba.1d)
+S3method(plotcorr, lba.2d)
+S3method(plotcorr, lba.3d)
 
 S3method(print, goodnessfit.lba.ls)
 S3method(print, goodnessfit.lba.ls.fe)

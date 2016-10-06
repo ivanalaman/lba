@@ -31,7 +31,49 @@ goodnessfit.lba.mle.fe <- function(object,...){
   pexpected <-  pij * rowSums(N)
   chi2 <- sum(((N - pexpected)^2)/pexpected) 
 
-  dfd <- (I-K)*(J-K) #degrees of freedom identified solutions 
+  #++++ calculus of dfd
+  recu_cA = eval(getCall(object)$cA) # recuperando a matrix de restrição
+  recu_cB = eval(getCall(object)$cB) # recuperando a matrix de restrição
+
+  if(!is.null(recu_cA)){
+       au1 = as.vector(recu_cA) 
+
+       #+++++SÓ EQUALITY++++###
+       au1e = au1[!is.na(au1) & au1 > 1]
+       au2e = table(au1e)
+
+       ifelse(length(au2e) > 0,
+              au3e <- sum(sapply(au2e,function(x) x-1)),
+              au3e <- 0)
+
+       #+++++SÓ FIXED+++++###
+       au1f = au1[!is.na(au1) & au1 <= 1]
+       au2f = length(au1f)
+
+       dfA <- au3e + au2f
+         } else {
+           dfA <- 0
+         }
+
+  if(!is.null(recu_cB)){
+    bu1 = as.vector(recu_cB) 
+
+    bu1e = bu1[!is.na(bu1) & bu1 > 1]
+    bu2e = table(bu1e)
+
+    ifelse(length(bu2e) > 0,
+           bu3e <- sum(sapply(bu2e,function(x) x-1)),
+           bu3e <- 0)
+
+    bu1f = bu1[!is.na(bu1) & bu1 <= 1]
+    bu2f = length(bu1f)
+
+    dfB <- bu3e + bu2f
+  } else {
+    dfB <- 0
+  }
+
+  dfd <- I*(J-1)-I*(K-1)-K*(J-1)+dfA+dfB #degrees of freedom identified solutions 
 
   #K = 1  baseline model
   dfdb <- (I-1)*(J-1)
@@ -49,6 +91,15 @@ goodnessfit.lba.mle.fe <- function(object,...){
 
   prochi1 <- 1-pchisq(chi2b, 
                       df = dfdb) #p-value of chi2 
+
+  #improvement
+  impG_mle <- abs(G2b - G2) 
+
+  # improvement per budget page 164
+  impPB_mle <- G2b/min(I,J)
+
+  #average improvement per degree of freedom
+  impDF_mle <- G2b/((I-1)*(J-1))                     
 
   #==============================================================================
   #          Low value  GFS
@@ -85,7 +136,7 @@ goodnessfit.lba.mle.fe <- function(object,...){
   RSS <- sum((pij - P)^2)
 
   #improvement
-  impRSS <- (RSS1 - RSS)/RSS1
+  impRSS <- RSS1 - RSS
 
   # improvement per budget page 164
   impPB <- RSS1/min(I,J)

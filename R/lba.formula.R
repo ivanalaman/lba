@@ -34,9 +34,9 @@ lba.formula <- function(formula,
  aux.form <- strsplit(as.character(formula),
                       '~')
 
- var.row <- aux.form[[2]]
+ var.col <- aux.form[[2]] 
 
- var.col <- aux.form[[3]]
+ var.row <- aux.form[[3]]
 
  var.row1 <- unlist(strsplit(var.row,
                              ' \\+ '))
@@ -186,9 +186,31 @@ lba.formula <- function(formula,
 
   }
 
- class(result) <- c(class(result),
-                    'lba.formula',
-                    'lba')
+ n_dim <- length(result$pk)-1
+
+ if(n_dim == 1){
+
+   class(result) <- c('lba.1d',
+                      class(result),
+                      'lba.formula',
+                      'lba')
+ }
+
+ if(n_dim == 2){
+
+   class(result) <- c('lba.2d',
+                      class(result),
+                      'lba.formula',
+                      'lba')
+ }
+
+ if(n_dim >= 3){
+
+   class(result) <- c('lba.3d',
+                      class(result),
+                      'lba.formula',
+                      'lba')
+ } 
 
  cl <- match.call() 
 

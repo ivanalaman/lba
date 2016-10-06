@@ -116,10 +116,37 @@ lba.table <- function(obj,
 
   }
 
+ n_dim <- length(result$pk)-1
 
- class(result) <- c(class(result),
-                    'lba.table',
-                    'lba')
+ if(n_dim == 1){
+
+   class(result) <- c('lba.1d',
+                      class(result),
+                      'lba.table',
+                      'lba')
+ }
+
+ if(n_dim == 2){
+
+   class(result) <- c('lba.2d',
+                      class(result),
+                      'lba.table',
+                      'lba')
+ }
+
+ if(n_dim >= 3){
+
+   class(result) <- c('lba.3d',
+                      class(result),
+                      'lba.table',
+                      'lba')
+ } else {
+
+   class(result) <- c(class(result),
+                      'lba.table',
+                      'lba') 
+
+ }
 
  cl <- match.call()
 

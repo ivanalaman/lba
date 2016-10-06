@@ -177,14 +177,14 @@ lba(obj, ...)
 }
 
 \arguments{
- \item{obj,formula}{The function is generic, accepting some forms of the principal argument for specifying a two-way frequency table. Currently accepted forms are matrix, data frame (coerced to frequency tables), objects of class \code{"xtabs"} or \code{"table"} and one-sided formulae of the form \code{Row1 + Row2 + \dots + Rown ~ Col1 + Col2 + \dots + Coln}, where \code{Rown} and \code{Coln} are nth row (the mixing parameters) and column variable (the latent components).}
+ \item{obj,formula}{The function is generic, accepting some forms of the principal argument for specifying a two-way frequency table. Currently accepted forms are matrix, data frame (coerced to frequency tables), objects of class \code{"xtabs"} or \code{"table"} and one-sided formulae of the form \code{Col1 + Col2 + \dots + Coln ~ Row1 + Row2 + \dots + Rown}, where \code{Rown} and \code{Coln} are nth row (the mixing parameters) and column variable (the latent components).}
  \item{data}{A data frame containing variables in \code{formula}.}
  \item{A}{The starting value of a (I x K) matrix containing the mixing parameters, if given. The default is \code{NULL}, producing random starting values.}
  \item{B}{The starting value of a (J x K) matrix containing the latent components, if given. The default is \code{NULL}, producing random starting values.}
  \item{K}{Integer giving the number of latent budgets chosen by the user. The default is \code{1}.}
  \item{cA}{The value of a (I x K) matrix containing the constraints on the mixing parameters. Fixed constraints are the values themselves which are numbers in the [0,1] interval. The optional equality constraints are indicated by an integer starting from 2, such that parameters that must be equal have the same integer. The default is \code{NULL}, indicating no constraints.}
  \item{cB}{The value of a (J x K) matrix containing the constraints on the latent components. Fixed constraints are the values themselves which are numbers in the [0,1] interval. The optional equality constraints are indicated by an integer starting from 2, such that parameters that must be equal have the same integer. The default is \code{NULL}, indicating no constraints.}
- \item{logitA}{Design (IxS) matrix for row-covariates. The first column contains 1´s, indicating a constant covariate. The entries may be continuous or dummy coded values.}
+ \item{logitA}{Design (IxS) matrix for row-covariates. The first column contains 1Â´s, indicating a constant covariate. The entries may be continuous or dummy coded values.}
  \item{logitB}{Design (JxT) matrix for column-covariates. The entries may be continuous or dummy coded values.}
  \item{omsk}{A (SxK) matrix giving the starting values for the multinomial logit parameters of the row covariates. The default is \code{NULL}, producing random starting values.}
  \item{psitk}{A (TxK) matrix giving the starting values for the multinomial logit parameters of the column covariates. The default is \code{NULL}, producing random starting values.}
@@ -202,7 +202,7 @@ lba(obj, ...)
  \item{method}{String indicating which kind of estimating method. They are: \code{"ls"} when least squares, either weighted or ordinary, method is 
 used; \code{"mle"} when maximum likelihood method is used. The default is \code{"ls"}.}
  \item{what}{String indicating which kind identified solutions for mixing parameters and latent budgets matrices. They are: the \code{"inner"} extreme solution and the \code{"outer"} extreme solution. The default is \code{"inner"}.}
- \item{\dots}{Potential further arguments (required by generic).}
+ \item{\dots}{Further arguments (required by generic).}
 }
 
 \value{
@@ -263,13 +263,13 @@ used; \code{"mle"} when maximum likelihood method is used. The default is \code{
 }
 
 \note{
- The user has two options to entry the data: the raw data and tabulated data. If the raw data is imported, he may indicate which, among the variables, comprises the row and which the column variable and let the \code{lba.formula} function make the tabulation. The user may also tabulate the data with the available functions in R. Recalling that if this second option is used, the object must be of the class \code{xtabs}, \code{table} or \code{matrix}. If the user imports the tabulated data, the class is, in general, \code{data.frame} and so, it is necessary to transform the object data into a \code{matrix}.
+ The user has two options to entry the data: the raw data and the tabulated data. If the raw data is imported, he may indicate which, among the variables, comprises the row and which the column variable and let the \code{lba.formula} function make the tabulation. The user may also tabulate the data with the available functions in R. Recalling that if this second option is used, the object must be of the class \code{xtabs}, \code{table} or \code{matrix}. If the user imports the tabulated data, the class is, in general, \code{data.frame} and so, it is necessary to transform the object data into a \code{matrix}.
 
  The function \code{lba} uses EM algorithm to maximise the latent budget model log-likelihood function; the Active Constraints Methods (ACM) to minimise either the weighted least squares (wls), or ordinary least squares (ols) functions; and "BFGS" variable metric method in \code{constrOptim.nl} function of \pkg{alabama} package and in \code{optim} function of \pkg{stats} package used in identification for K >= 3, in constraint algorithm for ls method, in multinomial logit constraints and in some parts of constraining for mle method. Depending on the starting parameters, those algorithms may only locate a local, rather than global, maximum.  This becomes more and more of a problem as K, the number of latent budgets, increases. It is therefore highly advisable to run \code{lba} multiple times until you are relatively certain that you have located the global maximum log-likelihood or the global minimum least squares.
 }
 
 \seealso{
- \code{\link{goodnessfit}}, \code{\link{summary.lba.ls}},\code{\link{summary.lba.mle}},\code{\link{plot.lba}}
+ \code{\link{goodnessfit}}, \code{\link{summary.lba.ls}},\code{\link{summary.lba.mle}},\code{\link{plotlba}},\code{\link{plotcorr}}
 }
 
 \examples{
@@ -277,7 +277,7 @@ data('votB')
 
 # Using LS method (default) without constraint
 # K = 2
-ex1 <- lba(city ~ parties,
+ex1 <- lba(parties ~ city,
            votB,
            K = 2)
 ex1 
@@ -285,11 +285,12 @@ ex1
 # Already tabulated data? Ok!
 data('PerfMark') 
 
+\dontrun{
 ex2 <- lba(as.matrix(PerfMark),
            K = 2,
            what='outer')
 ex2
-
+}
 # Using LS method (default) with constraint
 # Fixed constraint to mixing parameters
 cakiF1 <- matrix(c(0.2, NA, NA,
@@ -302,9 +303,46 @@ cakiF1 <- matrix(c(0.2, NA, NA,
                  ncol  = 3)  
 
 # K = 3
-exf1 <- lba(city ~ parties,
+\dontrun{
+exf1 <- lba(parties ~ city,
             votB,
             cA = cakiF1,
             K = 3)
 exf1 
+}
+# Using LS method (default) with LOGIT constrain
+data('housing')
+
+# Make cross-table to matrix design.
+tbh <- xtabs(value ~ Influence + Housing, housing)
+
+Xis <- model.matrix(~ Housing*Influence,
+                    tbh,
+                    contrasts=list(Housing='contr.sum',
+                                   Influence='contr.sum'))
+
+tby <- xtabs(value ~ Satisfaction + Contact, housing)
+
+Yis <- model.matrix(~ Satisfaction*Contact,
+                    tby,
+                    contrasts=list(Satisfaction='contr.sum',
+                                   Contact='contr.sum'))[,-1]
+
+S <- 12
+T <- 5
+
+tabs <- xtabs(value ~ interaction(Housing,
+                                  Influence) + interaction(Satisfaction,
+                                  Contact),
+              housing)
+\dontrun{
+exlogit2 <- lba(tabs,
+           K = 2,
+           logitA = Xis,
+           logitB = Yis,
+           S = S,
+           T = T,
+           trace.lba=FALSE) 
+exlogit2
+}
 }

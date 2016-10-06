@@ -32,7 +32,7 @@
 \arguments{
   \item{x}{A given object of the class \code{goodnessfit.lba.ls}, \code{goodnessfit.lba.ls.fe}, \code{goodnessfit.lba.ls.logit}, \code{goodnessfit.lba.mle.fe}, \code{goodnessfit.lba.mle.logit} and \code{goodnessfit.lba.mle}.}
   \item{digits}{A non-null value for digits specifies the minimum number of significant digits to be printed in values. The default is 3.}
-  \item{\dots }{Potential further arguments (require by generic).}
+  \item{\dots }{Further arguments (require by generic).}
 }
 
 \author{

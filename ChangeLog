@@ -1,14 +1,35 @@
+2016-09-28 vs. 2.3 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+ * Corrected bug in the plotcorr.lba.1 function. Arguments pch.points and pos.points working.
+ * Added reference line in the plotcorr.lba.2d and plotcorr.lba.3d functions.
+
+2016-09-19 vs. 2.2 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+ * Structural changes in plotcorr and plotlba functions again. 
+ * Implementation of methods plotlba.lba.1d, plotlba.lba.2d, plotcorr.lba.1d, plotcor.lba.2d e plotcorr.lba.3d.
+ * Dependence on package ca has been removed.
+ * New dependences on packages scatterplot3d and rgl.
+ * New features have been implemented. Now it is possible to use a 3D plot in dynamic mode by using the function plotcorr.
+ * The method lba.formula have been altered, now the procedure is made by columns as a function of rows, that is, Col ~ Row.
+ * New database was added (postmater).
+
+2016-08-25 vs. 2.1 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+ * Structural changes in plotcorr and plotlba functions. The arguments were modified. 
+
+2016-08-25 vs. 2.0 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+ * Put export(lba,plotlba) and export(lba,plotcorr) in NAMESPACE file to a correct compilation.
+
+2016-06-30 vs. 1.9 - Ivan Bezerra Allaman <ivanalaman@gmail.com>  
+ * Fixed bug in plot.lba function.
+ * Fixed error in goodnessfit functions. Forgot parenthesis in "if" conditions.
+
 2016-06-24 vs. 1.8 - Ivan Bezerra Allaman <ivanalaman@gmail.com> 
- * Fixed bug in constmleFEalabama. Added brackets in conditions cB and else
- related to !is.null(cB).
+ * Fixed bug in constmleFEalabama. Added brackets in conditions cB and else related to !is.null(cB).
  * Correction in the chi2b object within goodnessfit.mle functions.
 
 2016-06-22 vs. 1.7 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
  * Added row obj[obj==0] <- 1e-4 in lba.mle.fe function.
  * Fixed bug in constrainAB function. Corrected aux1 < 1 to aux1 <=1.
  * Fixed bug in constmleFEalabama. Added brackets in conditions cB.
- * The function auglag were changed to constrOptim.nl in all functions of the
- package.
+ * The function auglag were changed to constrOptim.nl in all functions of the package.
 
 2016-06-14 vs. 1.6 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
  * Bug in goodnessfit functions of the mle family. Add row  N[N==0] <- 1e-4.

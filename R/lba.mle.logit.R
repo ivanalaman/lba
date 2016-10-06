@@ -15,7 +15,6 @@ lba.mle.logit <- function(obj        ,
                           ...)
 {
 
-
  #===========================================================================
  #Multinomial logit on both mixing parameters and latent components
  #===========================================================================

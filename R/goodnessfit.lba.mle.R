@@ -47,6 +47,15 @@ goodnessfit.lba.mle <- function(object,...){
 
   prochi1 <- 1-pchisq(chi2b, 
                       df = dfdb) #p-value of chi2 
+                      
+  #improvement
+  impG_mle <- abs(G2b - G2) 
+
+  # improvement per budget page 164
+  impPB_mle <- G2b/min(I,J)
+
+  #average improvement per degree of freedom
+  impDF_mle <- G2b/((I-1)*(J-1))                    
 
   #==============================================================================
   #          Low value  GFS
@@ -57,7 +66,7 @@ goodnessfit.lba.mle <- function(object,...){
 
   CAIC <- G2 - dfd*(log(I*J) + 1)
 
-  AICb <- G2b - 2*dfdb
+  AICb <- G2b - 2*(J-1)
 
   BICb <- G2b - dfdb*log(I*J)
 
@@ -83,7 +92,7 @@ goodnessfit.lba.mle <- function(object,...){
   RSS <- sum((pij - P)^2)
 
   #improvement
-  impRSS <- (RSS1 - RSS)/RSS1
+  impRSS <- RSS1 - RSS
 
   # improvement per budget page 164
   impPB <- RSS1/min(I,J)

@@ -31,7 +31,7 @@
 \arguments{
   \item{object}{A given object of the class \code{lba}, \code{lba.ls.fe}, \code{lba.mle.fe}, \code{lba.ls.logit} and \code{lba.mle.logit}.}
   \item{digits}{Number of decimal digits in the results.The default is 2.}      
-  \item{\dots }{Potential further arguments (require by generic).}
+  \item{\dots }{Further arguments (require by generic).}
 }
 
 \author{

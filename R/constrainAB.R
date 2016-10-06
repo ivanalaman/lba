@@ -375,15 +375,15 @@ constrainAB <- function(cA)
 
     values2 <- unique(unlist(values2))
 
-    names(values2) <- unlist(aux10)
+    #names(values2) <- unlist(aux10)
 
     valuesfr <- unique(unlist(valuesfr))
 
-    names(valuesfr) <- sapply(aux6,function(x)x)
+    #names(valuesfr) <- sapply(aux6,function(x)x)
 
     valuesf <- c(valuesfr, 
                  values2)
-
+    names(valuesf) <- names(al)
     valuesf <- valuesf[order(names(valuesf))]
 
     # Iremos agora suastituir os equalitys pelos valores encontrados.

@@ -1,3 +1,6 @@
+2016-10-31 vs. 2.4 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+ * Added new database (pregnancy).
+ 
 2016-09-28 vs. 2.3 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
  * Corrected bug in the plotcorr.lba.1 function. Arguments pch.points and pos.points working.
  * Added reference line in the plotcorr.lba.2d and plotcorr.lba.3d functions.

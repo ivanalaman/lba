@@ -4,7 +4,7 @@ plotcorr.lba.1d <- function(x,
                          xlab           = NULL,
                          ylab           = NULL,
                          metrics        = TRUE,
-                         radius         = 0.5,
+                         radius         = rep(0.5,2),
                          col.points     = NULL,
                          height.points  = NULL,     
                          labels.points  = NULL,
@@ -143,17 +143,18 @@ plotcorr.lba.1d <- function(x,
                                   2, 
                                   function(x) abs(x - colcoor[2,]))) 
 
+  if(length(radius) != 2) stop('The size should be two!') 
   in_group <- radius
 
   groups_lb11 <- apply(dist_lb1, 
                        2, 
-                       function(x) ifelse(x < in_group, 
+                       function(x) ifelse(x < in_group[1], 
                                           'lb1',
                                           'nenhum')) 
 
   groups_lb22 <- apply(dist_lb2, 
                        2, 
-                       function(x) ifelse(x < in_group, 
+                       function(x) ifelse(x < in_group[2], 
                                           'lb2',
                                           'nenhum')) 
 
@@ -267,27 +268,27 @@ plotcorr.lba.1d <- function(x,
 
     segments(x0  = colcoor[1,],
              y0  = height.budget[1],
-             x1  = colcoor[1,]+radius,
+             x1  = colcoor[1,]+radius[1],
              y1  = height.budget[1],
              lty = 2
              )
 
-    text(x = median(c(colcoor[1,],colcoor[1,]+radius)),
+    text(x = median(c(colcoor[1,],colcoor[1,]+radius[1])),
          y = height.budget[1]-0.1,
-         labels = paste(radius,
+         labels = paste(radius[1],
                         'un.'),
          cex = 0.8)
 
     segments(x0  = colcoor[2,],
              y0  = height.budget[1],
-             x1  = colcoor[2,]-radius,
+             x1  = colcoor[2,]-radius[2],
              y1  = height.budget[1],
              lty = 2
              ) 
 
-    text(x = median(c(colcoor[2,],colcoor[2,]-radius)),
+    text(x = median(c(colcoor[2,],colcoor[2,]-radius[2])),
          y = height.budget[1]-0.1,
-         labels = paste(radius,
+         labels = paste(radius[2],
                         'un.'),
          cex = 0.8)   
   }

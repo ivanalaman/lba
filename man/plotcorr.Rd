@@ -21,7 +21,7 @@ plotcorr(x, ...)
          xlab           = NULL,
          ylab           = NULL,
          metrics        = TRUE,
-         radius         = 0.5,
+         radius         = rep(0.5,2),
          col.points     = NULL,
          height.points  = NULL,     
          labels.points  = NULL,
@@ -111,7 +111,7 @@ plotcorr(x, ...)
 \details{
   The \code{plotcorr} suggested by Jelihovschi et all (2011), has a graphical display which uses the correspondence analysis graphics of the mixing parameters and latent components matrices. In this case, a graphic display is possible for \code{K >= 2}.
 
-  The argument \code{radius} was featured in order to help the user as he or she needs do decide which are the points belonging to a certain latent budget. Only the points to the right or left of LB1 and LB2 but always towards the center of the graphic (the zero of x axis) were taken in account, since those in opposite direction automatically belong to the closest latent budget. this argument only works for \code{K = 2}. 
+  The argument \code{radius} was featured in order to help the user as he or she needs do decide which are the points belonging to a certain latent budget. Only the points to the right or left of LB1 and LB2 but always towards the center of the graphic (the zero of x axis) were taken in account, since those in opposite direction automatically belong to the closest latent budget. this argument only works for \code{K = 2}. It's should be of size two. 
 
  The argument \code{col.points} takes in account the argument \code{radius} in order to color the groups which either belong or not to a certain budget, therefore, the size of the vector of this argument must be equal to the number of formed groups.
 
@@ -149,7 +149,7 @@ plotcorr(ex1,
 
 #Changing radius!
 plotcorr(ex1,
-         radius = 0.7)
+         radius = rep(0.7,2))
 
 #Without metrics!
 plotcorr(ex1,

@@ -33,6 +33,18 @@ lba.matrix <- function(obj,
          ls = method <- 'ls',
          mle = method <- 'mle')
 
+  if(is.null(rownames(obj))){ 
+
+    rownames(obj) <- paste('a', 1:dim(obj)[1], sep = '') 
+
+  }
+
+  if(is.null(colnames(obj))){ 
+
+    colnames(obj) <- paste('b', 1:dim(obj)[2], sep = '') 
+
+  }
+
   if(is.null(cA) & is.null(cB) & is.null(logitA) & is.null(logitB)){
 
     class(obj)  <- method

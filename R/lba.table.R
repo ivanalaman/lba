@@ -26,132 +26,132 @@ lba.table <- function(obj,
                       ...) 
 {
 
- if(length(dim(obj)) == 3L){
+  if(length(dim(obj)) == 3L){
 
-  stop('Your table should be one-dimensional!')
-
- }
-
- switch(match.arg(what),
-        inner = what <- 'inner',
-        outer = what <- 'outer')
-
- switch(match.arg(method),
-        ls = method <- 'ls',
-        mle = method <- 'mle')
-
- if(is.null(cA) & is.null(cB) & is.null(logitA) & is.null(logitB)){
-
-  class(obj)  <- method
-
-  result <- lba(obj,
-                A           =  A,           
-                B           =  B,
-                K           =  K,
-                row.weights =  row.weights, 
-                col.weights =  col.weights, 
-                tolG        =  tolG,        
-                tolA        =  tolA,        
-                tolB        =  tolB,        
-                itmax.unide =  itmax.unide,
-                itmax.ide   =  itmax.ide,
-                trace.lba   =  trace.lba,  
-                toltype     =  toltype,
-                what        =  what,
-                ...) 
-
- } else 
-
-  if((!is.null(cA) | !is.null(cB)) & is.null(logitA) & is.null(logitB)){
-
-   class(obj) <- paste(method,
-                       'fe',
-                       sep='.')
-
-   result <- lba(obj,
-                 A           =  A,           
-                 B           =  B,
-                 K           =  K,
-                 cA          =  cA,          
-                 cB          =  cB,           
-                 row.weights =  row.weights, 
-                 col.weights =  col.weights, 
-                 tolG        =  tolG,        
-                 tolA        =  tolA,        
-                 tolB        =  tolB,        
-                 itmax.ide   =  itmax.ide,
-                 trace.lba   =  trace.lba,  
-                 toltype     =  toltype,
-                 what        =  what,
-                 ...)
-
-  } else {
-
-   class(obj) <- paste(method,
-                       'logit',
-                       sep='.')
-
-   result <- lba(obj,
-                 A           =  A,           
-                 B           =  B,
-                 K           =  K,
-                 cA          =  cA,
-                 cB          =  cB,
-                 logitA      =  logitA,      
-                 logitB      =  logitB,      
-                 omsk        =  omsk,        
-                 psitk       =  psitk,       
-                 S           =  S,           
-                 T           =  T,           
-                 row.weights =  row.weights, 
-                 col.weights =  col.weights, 
-                 tolG        =  tolG,        
-                 tolA        =  tolA,        
-                 tolB        =  tolB,        
-                 itmax.ide   =  itmax.ide,
-                 trace.lba   =  trace.lba,  
-                 toltype     =  toltype,
-                 what        =  what,
-                 ...)
+    stop('Your table should be one-dimensional!')
 
   }
 
- n_dim <- length(result$pk)-1
+  switch(match.arg(what),
+         inner = what <- 'inner',
+         outer = what <- 'outer')
 
- if(n_dim == 1){
+  switch(match.arg(method),
+         ls = method <- 'ls',
+         mle = method <- 'mle')
 
-   class(result) <- c('lba.1d',
-                      class(result),
-                      'lba.table',
-                      'lba')
- }
+  if(is.null(cA) & is.null(cB) & is.null(logitA) & is.null(logitB)){
 
- if(n_dim == 2){
+    class(obj)  <- method
 
-   class(result) <- c('lba.2d',
-                      class(result),
-                      'lba.table',
-                      'lba')
- }
+    result <- lba(obj,
+                  A           =  A,           
+                  B           =  B,
+                  K           =  K,
+                  row.weights =  row.weights, 
+                  col.weights =  col.weights, 
+                  tolG        =  tolG,        
+                  tolA        =  tolA,        
+                  tolB        =  tolB,        
+                  itmax.unide =  itmax.unide,
+                  itmax.ide   =  itmax.ide,
+                  trace.lba   =  trace.lba,  
+                  toltype     =  toltype,
+                  what        =  what,
+                  ...) 
 
- if(n_dim >= 3){
+  } else 
 
-   class(result) <- c('lba.3d',
-                      class(result),
-                      'lba.table',
-                      'lba')
- } else {
+    if((!is.null(cA) | !is.null(cB)) & is.null(logitA) & is.null(logitB)){
 
-   class(result) <- c(class(result),
-                      'lba.table',
-                      'lba') 
+      class(obj) <- paste(method,
+                          'fe',
+                          sep='.')
 
- }
+      result <- lba(obj,
+                    A           =  A,           
+                    B           =  B,
+                    K           =  K,
+                    cA          =  cA,          
+                    cB          =  cB,           
+                    row.weights =  row.weights, 
+                    col.weights =  col.weights, 
+                    tolG        =  tolG,        
+                    tolA        =  tolA,        
+                    tolB        =  tolB,        
+                    itmax.ide   =  itmax.ide,
+                    trace.lba   =  trace.lba,  
+                    toltype     =  toltype,
+                    what        =  what,
+                    ...)
 
- cl <- match.call()
+    } else {
 
- result$call <- cl
- result$what <- what
+      class(obj) <- paste(method,
+                          'logit',
+                          sep='.')
 
- result
+      result <- lba(obj,
+                    A           =  A,           
+                    B           =  B,
+                    K           =  K,
+                    cA          =  cA,
+                    cB          =  cB,
+                    logitA      =  logitA,      
+                    logitB      =  logitB,      
+                    omsk        =  omsk,        
+                    psitk       =  psitk,       
+                    S           =  S,           
+                    T           =  T,           
+                    row.weights =  row.weights, 
+                    col.weights =  col.weights, 
+                    tolG        =  tolG,        
+                    tolA        =  tolA,        
+                    tolB        =  tolB,        
+                    itmax.ide   =  itmax.ide,
+                    trace.lba   =  trace.lba,  
+                    toltype     =  toltype,
+                    what        =  what,
+                    ...)
+
+    }
+
+  n_dim <- length(result$pk)-1
+
+  if(n_dim == 1){
+
+    class(result) <- c('lba.1d',
+                       class(result),
+                       'lba.table',
+                       'lba')
+  }
+
+  if(n_dim == 2){
+
+    class(result) <- c('lba.2d',
+                       class(result),
+                       'lba.table',
+                       'lba')
+  }
+
+  if(n_dim >= 3){
+
+    class(result) <- c('lba.3d',
+                       class(result),
+                       'lba.table',
+                       'lba')
+  } else {
+
+    class(result) <- c(class(result),
+                       'lba.table',
+                       'lba') 
+
+  }
+
+  cl <- match.call()
+
+  result$call <- cl
+  result$what <- what
+
+  result
 }

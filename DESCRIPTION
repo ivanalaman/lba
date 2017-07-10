@@ -1,7 +1,7 @@
 Package: lba
 Title: Latent Budget Analysis for Compositional Data
-Version: 2.4.2
-Date: 2017-02-07
+Version: 2.4.3
+Date: 2017-07-09
 Author: Enio G. Jelihovschi <eniojelihovs@gmail.com>  and
     Ivan Bezerra Allaman <ivanalaman@gmail.com>
 Maintainer: Enio G. Jelihovschi <eniojelihovs@gmail.com>

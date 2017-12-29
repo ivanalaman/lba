@@ -11,30 +11,30 @@ The \code{pregnancy} matrix has 16 rows and 5 columns. The raw data refers to Ca
 \format{
  This matrix contains the following columns:
  \describe{
-  \item{Pre.E}{bla}
-  \item{OH}{bla}
-  \item{CVD}{bla}
-  \item{DVTPE}{bla}
-  \item{AFE}{bla}
+  \item{Pre.E}{Preeclampsia/eclampsia}
+  \item{OH}{Obstetric hemorrhage}
+  \item{CVD}{Cardiovascular diseases}
+  \item{DVTPE}{Deep vein thrombosis - pulmonary embolism}
+  \item{AFE}{Amniotic fluid embolism}
  }
  The rows refers to:
  \describe{
-  \item{Hfob}{bla}
-  \item{Husb}{bla}
-  \item{Wnh}{bla}
-  \item{Bnh}{bla}
-  \item{$<30$b}{bla}
-  \item{$30-40$b}{bla}
-  \item{$>40$b}{bla}
-  \item{$1$}{bla}
-  \item{$2-4$}{bla}
-  \item{$5+$}{bla}
-  \item{$<30$a}{bla}
-  \item{$30-40$a}{bla}
-  \item{$>40$a}{bla}
-  \item{$<32$w}{bla}
-  \item{$32-36$w}{bla}
-  \item{$>37$w}{bla}
+  \item{Hfob}{Hispanic,foreign-born}
+  \item{Husb}{Hispanic, us-born}
+  \item{Wnh}{White, non-hispanic}
+  \item{Bnh}{Black, non-hispanic}
+  \item{$<30$b}{Maternal age}     
+  \item{$30-40$b}{Maternal age}
+  \item{$>40$b}{Maternal age}
+  \item{$1$}{Parity}
+  \item{$2-4$}{Parity}
+  \item{$5+$}{Parity}
+  \item{$<30$a}{Maternal age}
+  \item{$30-40$a}{Maternal age}
+  \item{$>40$a}{Maternal age}
+  \item{$<32$w}{Gestational age at delivery}
+  \item{$32-36$w}{Gestational age at delivery}
+  \item{$>37$w}{Gestational age at delivery}
  }
 }
 

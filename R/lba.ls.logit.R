@@ -149,17 +149,25 @@ logit.AB <- function(obj        ,
     B <- t(t(B)/colSums(B))
     # B is a JxK matrix
 
-    # Generating the identity matrix if row.weights is not informed
+    # Generating the identity matrix of row weights if they aren't informed
     if(is.null(row.weights)){
-      V  <-  diag(I)
+      #vI <- rep(1,I)
+      vI <- sqrt(rowSums(obj)/sum(obj))
+      V  <- vI * diag(I)
     } else {
-      V <- row.weights * diag(I)}
+      vI <- row.weights
+      V <- vI * diag(I)
+    }
 
-    # Generating the identity matrix if col.weights is not informed 
+    # Generating the identity matrix of column weights if they aren't informed 
     if(is.null(col.weights)){
-      W  <- diag(J)
+      #wi <- rep(1,J)
+      wi <- 1/sqrt(colSums(obj)/sum(obj))
+      W  <- wi * diag(J)
     } else {
-      W <- col.weights * diag(J) }
+      wi <- col.weights
+      W <- wi * diag(J)
+    }
 
     P <- obj/rowSums(obj) 
     ab <- A%*%t(B)
@@ -220,14 +228,27 @@ logit.AB <- function(obj        ,
   B <- t(t(B)/colSums(B))
   # B is a JxK matrix
 
-  B <- t(t(B)/colSums(B))
-  # B is a JxK matrix
-
   colnames(A) <- colnames(B) <- colnames(omsk) <- colnames(psitk) <- paste('LB',1:K,sep='')
 
   pimais <- rowSums(obj)/sum(obj)
 
-  pk <- pimais %*% A # budget proportions
+  aux_pk <- pimais %*% A # budget proportions
+
+  pk <- aux_pk[order(aux_pk,
+                     decreasing = TRUE)] 
+
+  names(pk) <- paste('LB',
+                     1:K,
+                     sep='')
+
+  A <- A[,order(aux_pk,
+                decreasing = TRUE)]
+  B <- B[,order(aux_pk,
+                decreasing = TRUE)]
+
+  colnames(A) <- colnames(B) <- paste('LB',
+                                      1:K,
+                                      sep='')
 
   P <- obj/rowSums(obj)  
 
@@ -235,7 +256,6 @@ logit.AB <- function(obj        ,
   rownames(B) <- colnames(P)
 
   pij <- A %*% t(B) # expected budget
-
 
   residual <- P - pij
 
@@ -274,17 +294,6 @@ logit.AB <- function(obj        ,
                       'omsk',
                       'psitk')
 
-  #  names(results) <- c('Composition data matrix',
-  #                      'Expected budget',
-  #                      'Residual matrix',
-  #                      'Mixing parameters',
-  #                      'Latent budgets',
-  #                      'Budget proportions',
-  #                      'Value of the ls function',
-  #                      'Number of iteractions',
-  #                      'Logit parameters omsk',
-  #                      'Logit parameters psitk')
-  # 
   class(results)  <- c('lba.ls.logit',
                        'lba.ls')
   invisible(results)
@@ -374,17 +383,25 @@ logit.A <- function(obj        ,
         posFb   <- which(cB<1, arr.ind = T)
         B[posFb] <- cB[posFb]  }   }
 
-    # Generating the identity matrix if row.weights is not informed
+    # Generating the identity matrix of row weights if they aren't informed
     if(is.null(row.weights)){
-      V  <-  diag(I)
-    }else {
-      V <- row.weights * diag(I)}
-
-    # Generating the identity matrix if col.weights is not informed 
-    if(is.null(col.weights)){
-      W  <- diag(J)
+      #vI <- rep(1,I)
+      vI <- sqrt(rowSums(obj)/sum(obj))
+      V  <- vI * diag(I)
     } else {
-      W <- col.weights * diag(J) }
+      vI <- row.weights
+      V <- vI * diag(I)
+    }
+
+    # Generating the identity matrix of column weights if they aren't informed 
+    if(is.null(col.weights)){
+      #wi <- rep(1,J)
+      wi <- 1/sqrt(colSums(obj)/sum(obj))
+      W  <- wi * diag(J)
+    } else {
+      wi <- col.weights
+      W <- wi * diag(J)
+    }
 
     P <- obj/rowSums(obj) 
     ab <- A%*%t(B)
@@ -581,11 +598,23 @@ logit.A <- function(obj        ,
 
   pimais <- rowSums(obj)/sum(obj)
 
-  pk <- pimais %*% A # budget proportions
+  aux_pk <- pimais %*% A # budget proportions
+
+  pk <- aux_pk[order(aux_pk,
+                     decreasing = TRUE)] 
+                                 
+  names(pk) <- paste('LB',
+                     1:K,
+                     sep='')
+
+  A <- A[,order(aux_pk,
+                decreasing = TRUE)]
+  B <- B[,order(aux_pk,
+                decreasing = TRUE)]
 
   P <- obj/rowSums(obj)   
 
-  colnames(A) <- colnames(B) <- colnames(omsk) <- colnames(pk) <- paste('LB',1:K,sep='') 
+  colnames(A) <- colnames(B) <- colnames(omsk) <- paste('LB',1:K,sep='') 
 
   rownames(A) <- rownames(P)
   rownames(B) <- colnames(P)
@@ -626,16 +655,7 @@ logit.A <- function(obj        ,
                       'val_func',
                       'iter_ide',
                       'omsk')
-  #  names(results) <- c('Composition data matrix',
-  #                      'Expected budget',
-  #                      'Residual matrix',
-  #                      'Mixing parameters',
-  #                      'Latent budgets',
-  #                      'Budget proportions',
-  #                      'Value of the ls function',
-  #                      'Number of iteractions',
-  #                      'Logit parameters omsk')
-  # 
+
   class(results)  <- c('lba.ls.logit',
                        'lba.ls')
   invisible(results)
@@ -724,17 +744,25 @@ logit.B <- function(obj        ,
         posFa   <- which(cA<1, arr.ind = T)
         A[posFa] <- cA[posFa]  }   }
 
-    # Generating the identity matrix if row.weights is not informed
+    # Generating the identity matrix of row weights if they aren't informed
     if(is.null(row.weights)){
-      V  <-  diag(I)
+      #vI <- rep(1,I)
+      vI <- sqrt(rowSums(obj)/sum(obj))
+      V  <- vI * diag(I)
     } else {
-      V <- row.weights * diag(I)}
+      vI <- row.weights
+      V <- vI * diag(I)
+    }
 
-    # Generating the identity matrix if col.weights is not informed 
+    # Generating the identity matrix of column weights if they aren't informed 
     if(is.null(col.weights)){
-      W  <- diag(J)
+      #wi <- rep(1,J)
+      wi <- 1/sqrt(colSums(obj)/sum(obj))
+      W  <- wi * diag(J)
     } else {
-      W <- col.weights * diag(J) }
+      wi <- col.weights
+      W <- wi * diag(J)
+    }
 
     P <- obj/rowSums(obj) 
     ab <- A%*%t(B)
@@ -894,11 +922,22 @@ logit.B <- function(obj        ,
   # B is a JxK matrix
   pimais <- rowSums(obj)/sum(obj)
 
-  pk <- pimais %*% A # budget proportions 
+  aux_pk <- pimais %*% A # budget proportions 
+
+  pk <- matrix(aux_pk[order(aux_pk,
+                     decreasing = TRUE)],
+               ncol = dim(aux_pk)[2])
+
+  A <- matrix(A[,order(aux_pk,
+                decreasing = TRUE)],
+              ncol = dim(aux_pk)[2])
+  B <- matrix(B[,order(aux_pk,
+                decreasing = TRUE)],
+              ncol = dim(aux_pk)[2])
 
   P <- obj/rowSums(obj)   
 
-  colnames(A) <- colnames(B) <- colnames(psitk) <- colnames(pk) <- paste('LB',1:K,sep='') 
+  colnames(pk) <- colnames(A) <- colnames(B) <- colnames(psitk) <- paste('LB',1:K,sep='') 
 
   rownames(A) <- rownames(P)
   rownames(B) <- colnames(P)
@@ -939,16 +978,7 @@ logit.B <- function(obj        ,
                       'val_func',
                       'iter_ide',
                       'psitk')
-  #  names(results) <- c('Composition data matrix',
-  #                      'Expected budget',
-  #                      'Residual matrix',
-  #                      'Mixing parameters',
-  #                      'Latent budgets',
-  #                      'Budget proportions',
-  #                      'Value of the ls function',
-  #                      'Number of iteractions',
-  #                      'Logit parameters psitk')
-  # 
+
   class(results)  <- c("lba.ls.logit",
                        "lba.ls")
   invisible(results) 

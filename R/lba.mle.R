@@ -151,13 +151,6 @@ lba.mle <- function(obj     ,
   pij <- A %*% t(B)
   # Values of pihat(j|i) = the sum over k of alphahat(k|i)*betahat(j|k)
 
-
-  piplus <- rowSums(obj)/sum(obj)
-  # The margins of the unconditional proportions
-
-  pk <- piplus %*% A
-  # budget proportions
-
   G2 <- 2 * sum(obj * log(obj/(pij * rowSums(obj))))
   chi2 <- sum(((obj - pij * rowSums(obj))^2)/obj)
   # xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -219,9 +212,30 @@ lba.mle <- function(obj     ,
 
  pip <- rowSums(obj)/sum(obj) #this is pi+ 
 
- pk <- pip %*% Aoi
+ aux_pk <- pip %*% Aoi
 
- colnames(pk) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep='')
+ pk <- matrix(aux_pk[order(aux_pk,
+                       decreasing = TRUE)],
+              ncol = dim(aux_pk)[2])
+
+ Aoi <- matrix(Aoi[,order(aux_pk,
+                   decreasing = TRUE)],
+               ncol = dim(aux_pk)[2])
+ Boi <- matrix(Boi[,order(aux_pk,
+                   decreasing = TRUE)],
+               ncol = dim(aux_pk)[2])
+
+ A <- matrix(A[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+ B <- matrix(B[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+
+ colnames(pk) <- colnames(Aoi) <- colnames(Boi) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep='')
+
+ rownames(Aoi) <- rownames(A) <- rownames(P)
+ rownames(Boi) <- rownames(B) <- colnames(P)
 
  rescB <- rescaleB(x=obj,
                    Aoi,
@@ -256,23 +270,6 @@ lba.mle <- function(obj     ,
                  'iter_unide',
                  'iter_ide')
 
- #  names(res) <- c('Composition data matrix',
- #                  'Expected budget',
- #                  'Residual matrix',
- #                  'Unidentified mixing parameters',
- #                  'Unidentified latent budgets',
- #                  ifelse(what=='outer',
- #                         'Outer extreme mixing parameters',
- #                         'Inner extreme mixing parameters'),
- #                  ifelse(what=='outer',
- #                         'Outer extreme latent budgets',
- #                         'Inner extreme latent budgets'),
- #                  'Rescaled latent budgets',
- #                  'Budget proportions',
- #                  'Value of the -loglik function',
- #                  'Number of unidentified iteractions',
- #                  'Number of identified iteractions')
- # 
  class(res) <- "lba.mle" 
 
  invisible(res)            

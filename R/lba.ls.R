@@ -31,8 +31,9 @@ lba.ls <- function(obj        ,
  }
  # Generating the identity matrix of row weights if they aren't informed
  if(is.null(row.weights)){
-  vI <- rep(1,I)
-  V  <- vI * diag(I)
+  #vI <- rep(1,I)
+   vI <- sqrt(rowSums(obj)/sum(obj))
+   V  <- vI * diag(I)
  } else {
   vI <- row.weights
   V <- vI * diag(I)
@@ -40,8 +41,9 @@ lba.ls <- function(obj        ,
 
  # Generating the identity matrix of column weights if they aren't informed 
  if(is.null(col.weights)){
-  wi <- rep(1,J)
-  W  <- wi * diag(J)
+  #wi <- rep(1,J)
+   wi <- 1/sqrt(colSums(obj)/sum(obj))
+   W  <- wi * diag(J)
  } else {
   wi <- col.weights
   W <- wi * diag(J)
@@ -341,13 +343,31 @@ lba.ls <- function(obj        ,
 
  pij <- Aoi %*% t(Boi) # expected budget
 
- rownames(pij) <- rownames(A) <- rownames(P)
- colnames(pij) <- rownames(B) <- colnames(P)
+ rownames(pij) <- rownames(P)
+ colnames(pij) <- colnames(P)
 
  residual <- P - pij
 
- pk <- pimais %*% Aoi # budget proportions
- colnames(pk) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep='') 
+ aux_pk <- pimais %*% Aoi # budget proportions
+
+ pk <- matrix(aux_pk[order(aux_pk,
+                    decreasing=TRUE)],
+              ncol = dim(aux_pk)[2])
+
+ Aoi <- matrix(Aoi[,order(aux_pk,decreasing=TRUE)],
+               ncol = dim(aux_pk)[2])
+ Boi <- matrix(Boi[,order(aux_pk,decreasing=TRUE)],
+               ncol = dim(aux_pk)[2])
+  
+ A <- matrix(A[,order(aux_pk,decreasing=TRUE)],
+             ncol = dim(aux_pk)[2])
+ B <- matrix(B[,order(aux_pk,decreasing=TRUE)],
+             ncol = dim(aux_pk)[2])
+
+colnames(pk) <- colnames(Aoi) <- colnames(Boi) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep='') 
+rownames(Aoi) <- rownames(A) <- rownames(P)
+rownames(Boi) <- rownames(B) <- colnames(P)
+
  val_func <- ls_func(V,P,pij,W) 
 
  rescB <- rescaleB(obj,
@@ -382,25 +402,6 @@ lba.ls <- function(obj        ,
                  'val_func',
                  'iter_unide',
                  'iter_ide')
-
-# 
- #  names(res) <- c('Composition data matrix',
- #                  'Expected budget',
- #                  'Residual matrix',
- #                  'Unidentified mixing parameters',
- #                  'Unidentified latent budgets',
- #                  ifelse(what=='outer',
- #                         'Outer extreme mixing parameters',
- #                         'Inner extreme mixing parameters'),
- #                  ifelse(what=='outer',
- #                         'Outer extreme latent budgets',
- #                         'Inner extreme latent budgets'),
- #                  'Rescaled latent budgets',
- #                  'Budget proportions',
- #                  'Value of the ls function',
- #                  'Number of unidentified iteractions',
- #                  'Number of identified iteractions')
- # 
 
  class(res) <- 'lba.ls'
 

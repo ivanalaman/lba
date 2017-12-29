@@ -190,8 +190,8 @@ lba(obj, ...)
  \item{psitk}{A (TxK) matrix giving the starting values for the multinomial logit parameters of the column covariates. The default is \code{NULL}, producing random starting values.}
  \item{S}{Number of row-covariates. The default is \code{NULL}.}
  \item{T}{Number of column-covariates. The default is \code{NULL}.}
- \item{row.weights}{Row weights for weighted least squares method. The default is \code{NULL}.}
- \item{col.weights}{Column weights for weighted least squares method. The default is \code{NULL}. If both row.weights and col.weights are \code{NULL} and \code{"ls"} method is chosen, then ordinary least squares is used.}
+ \item{row.weights}{A vector with the same row of the matrix to the weighted least squares method. If is \code{NULL} (default), the weights are \deqn{\sqrt{n_{i+}/n_{++}}}.}
+ \item{col.weights}{A vector with the same column of the matrix to the weighted least squares method. If is \code{NULL} (default), the weights are \deqn{1/\sqrt{n_{+j}/n_{++}}}.}
  \item{tolG}{A tolerance value for judging when convergence has been reached. It is based on the estimated likelihood ratio statistics G2. The default is \code{1e-10}.}
  \item{tolA}{A tolerance value for judging when convergence has been reached. When the one-iteration change in the maximum of the absolute value of the  element wise difference of the estimated matrices A is less than tolA. The default is \code{1e-05}.}
  \item{tolB}{A tolerance value for judging when convergence has been reached. When the one-iteration change in the maximum of the absolute value of the  element wise difference of the estimated matrices B is less than tolB. The default is \code{1e-05}.}

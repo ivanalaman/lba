@@ -20,11 +20,10 @@ print.lba.ls <- function(x,
   cat("\nIdentified latent budget:\n\n") 
   print.default(boi, 
                 ...)
-
+ 
   cat("\nBudget proportions:\n") 
   pkk <- round(x$pk,
                digits)
-  rownames(pkk) <- c('')
   print.default(pkk, 
                 ...) 
 }

@@ -24,7 +24,7 @@ print.lba.mle <- function(x,
   cat("\nBudget proportions:\n") 
   pkk <- round(x$pk, 
                digits)
-  rownames(pkk) <- c('')
+  #rownames(pkk) <- c('')
   print.default(pkk, 
                 ...) 
 }

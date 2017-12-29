@@ -492,12 +492,21 @@ pij <- A %*% t(B)
 
 residual <- P - pij
 
-pk <- pip %*% A  # budget proportions
+aux_pk <- pip %*% A  # budget proportions
+
+pk <- matrix(aux_pk[order(aux_pk,
+                   decreasing=TRUE)],
+      ncol = dim(aux_pk)[2])
+
+A <- A[,order(aux_pk,
+              decreasing = TRUE)]
+B <- B[,order(aux_pk,
+              decreasing = TRUE)]
 
 rownames(A) <- rownames(P)
 rownames(B) <- colnames(P)
 
-colnames(A) <- colnames(B) <- colnames(pk) <- paste('LB',1:K,sep='')
+colnames(pk) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep='')
 
 rescB <- rescaleB(obj,
                   A,
@@ -526,15 +535,6 @@ names(results) <- c('P',
                     'val_func',
                     'iter_ide')
 
-#  names(results) <- c('Composition data matrix',
-#                      'Expected budget',
-#                      'Residual matrix',
-#                      'Mixing parameters',
-#                      'Latent budgets',
-#                      'Budget proportions',
-#                      'Value of the -loglik function',
-#                      'Number of iteractions')
-# 
 class(results) <- "lba.mle.fe"
 
 invisible(results)
@@ -1107,12 +1107,23 @@ constmleFEalabama <- function(obj,
 
  residual <- P - pij
 
- pk <- pip %*% A  # budget proportions
+ aux_pk <- pip %*% A  # budget proportions
+
+ pk <- matrix(aux_pk[order(aux_pk,
+                    decreasing = TRUE)],
+              ncol = dim(aux_pk)[2])
+
+ A <- matrix(A[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+ B <- matrix(B[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
 
  rownames(A) <- rownames(P)
  rownames(B) <- colnames(P)
 
- colnames(A) <- colnames(B) <- colnames(pk) <- paste('LB',1:K,sep='')
+ colnames(pk) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep='')
 
  val_func <- xab$value
 
@@ -1143,15 +1154,6 @@ constmleFEalabama <- function(obj,
                      'val_func',
                      'iter_ide')
 
- #  names(results) <- c('Composition data matrix',
- #                      'Expected budget',
- #                      'Residual matrix',
- #                      'Mixing parameters',
- #                      'Latent budgets',
- #                      'Budget proportions',
- #                      'Value of the -loglik function',
- #                      'Number of iteractions') 
- # 
  class(results) <- c("lba.mle.fe",
                      "lba.mle")
 

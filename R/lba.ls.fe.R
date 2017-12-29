@@ -61,18 +61,25 @@ lba.ls.fe <- function(obj          ,
   B <- matrix(x[(y+1):(y+J*K)], 
               ncol = K)
 
-  # Generating the identity matrix if row.weights is not informed
+  # Generating the identity matrix of row weights if they aren't informed
   if(is.null(row.weights)){
-   V  <- diag(I)
+    #vI <- rep(1,I)
+    vI <- sqrt(rowSums(obj)/sum(obj))
+    V  <- vI * diag(I)
   } else {
-   V <- row.weights * diag(I)}
+    vI <- row.weights
+    V <- vI * diag(I)
+  }
 
-  # Generating the identity matrix if col.weights is not informed 
+  # Generating the identity matrix of column weights if they aren't informed 
   if(is.null(col.weights)){
-   W  <- diag(J)
+    #wi <- rep(1,J)
+    wi <- 1/sqrt(colSums(obj)/sum(obj))
+    W  <- wi * diag(J)
   } else {
-   wi <- col.weights
-   W <- col.weights * diag(J) }
+    wi <- col.weights
+    W <- wi * diag(J)
+  }
 
   ab <- A%*%t(B)
   wls <-  sum((V%*%(P - ab)%*%W)^2)
@@ -314,27 +321,35 @@ lba.ls.fe <- function(obj          ,
  B <- matrix(xab$par[(y+1):(y+J*K)], 
              ncol = K)
 
- rownames(A) <- rownames(P)
- rownames(B) <- colnames(P)
-
- colnames(A) <- colnames(B) <- paste('LB',
-                                     1:K,
-                                     sep='')
 
  pimais <- rowSums(obj)/sum(obj)
 
- pk <- pimais %*% A # budget proportions
+ #alterei aqui
+ aux_pk <- pimais %*% A # budget proportions
 
- colnames(pk) <- paste('LB',
-                       1:K,
-                       sep='')
+ pk <- matrix(aux_pk[order(aux_pk,
+                    decreasing = TRUE)],
+              ncol = dim(aux_pk)[2])
+
+ A <- matrix(A[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+ B <- matrix(B[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+
+ colnames(pk) <- colnames(A) <- colnames(B) <- paste('LB',
+                                                     1:K,
+                                                     sep='')
+ rownames(A) <- rownames(P)
+ rownames(B) <- colnames(P)
 
  pij <- A %*% t(B) # expected budget
 
 rownames(pij) <- rownames(P)
 colnames(pij) <- colnames(P)
 
- residual <- P - pij
+ residual <- P - pij 
 
  val_func <- xab$value
 

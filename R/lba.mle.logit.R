@@ -215,11 +215,25 @@ lba.mle.logit.AB <- function(obj      ,
 
  pimais <- rowSums(obj)/sum(obj)
 
- pk <- pimais %*% A # budget proportions
+ aux_pk <- pimais %*% A # budget proportions
+
+ pk <- matrix(aux_pk[order(aux_pk,
+                    decreasing = TRUE)],
+              ncol = dim(aux_pk)[2])
+
+ A <- matrix(A[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+ B <- matrix(B[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
 
  P <- obj/rowSums(obj)  
+
  rownames(A) <- rownames(P)
  rownames(B) <- colnames(P)
+
+ colnames(pk) <- colnames(A) <- colnames(B) <- paste('LB', 1:K, sep='')
 
  pij <- A %*% t(B) # expected budget 
 
@@ -260,17 +274,6 @@ lba.mle.logit.AB <- function(obj      ,
                      'omsk',
                      'psitk')
 
- #  names(results) <- c('Composition data matrix',
- #                      'Expected budget',
- #                      'Residual matrix',
- #                      'Mixing parameters',
- #                      'Latent budgets',
- #                      'Budget proportions',
- #                      'Value of the -loglik function',
- #                      'Number of iteractions',
- #                      'Logit parameters omsk',
- #                      'Logit parameters psitk')
- # 
  class(results)  <- c("lba.mle.logit",
                       "lba.mle")
  invisible(results) 
@@ -541,10 +544,24 @@ lba.mle.logit.A <- function(obj       ,
  pimais <- rowSums(obj)/sum(obj)
 
  P <- obj/rowSums(obj)   
- pk <- pimais %*% A # budget proportions 
 
- colnames(A) <- colnames(B) <- colnames(omsk) <- colnames(pk) <- paste('LB',1:K,sep='') 
+ aux_pk <- pimais %*% A # budget proportions 
 
+ pk <- matrix(aux_pk[order(aux_pk,
+                    decreasing = TRUE)],
+              ncol = dim(aux_pk)[2])
+
+ A <- matrix(A[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+ B <- matrix(B[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+
+ P <- obj/rowSums(obj)  
+
+ colnames(pk) <- colnames(A) <- colnames(B) <- paste('LB', 1:K, sep='')
+ 
  pij <- A %*% t(B) # expected budget
 
  rownames(A) <- rownames(P)
@@ -585,16 +602,6 @@ lba.mle.logit.A <- function(obj       ,
                      'iter_ide',
                      'omsk')
 
- #  names(results) <- c('Composition data matrix',
- #                      'Expected budget',
- #                      'Residual matrix',
- #                      'Mixing parameters',
- #                      'Latent budgets',
- #                      'Budget proportions',
- #                      'Value of the ls function',
- #                      'Number of iteractions',
- #                      'Logit parameters omsk')
- # 
  class(results)  <- c("lba.mle.logit",
                       "lba.mle")
  invisible(results)
@@ -804,19 +811,19 @@ lba.mle.logit.B <- function(obj       ,
  itmax.opt <- round(.9*itmax.ide)
 
  xab <- constrOptim.nl(par     = x0,
-               fn      = mw,
-               cA      = cA,
-               logitB  = logitB,
-               obj      = obj,
-               K       = K,
-               I       = I,
-               J       = J,
-               T       = T,
-               heq     = heq,
-               hin     = hin,
-               control.outer=list(trace=trace.lba,
-                                  itmax=itmax.ala),
-               control.optim=list(maxit=itmax.opt))
+                       fn      = mw,
+                       cA      = cA,
+                       logitB  = logitB,
+                       obj     = obj,
+                       K       = K,
+                       I       = I,
+                       J       = J,
+                       T       = T,
+                       heq     = heq,
+                       hin     = hin,
+                       control.outer=list(trace=trace.lba,
+                                          itmax=itmax.ala),
+                       control.optim=list(maxit=itmax.opt))
  # 
  y <- length(xab$par)- (T*K+I*K)
  psitk <- matrix(xab$par[(y+I*K+1):(y+I*K+T*K)], ncol = K)
@@ -840,13 +847,24 @@ lba.mle.logit.B <- function(obj       ,
 
  P <- obj/rowSums(obj)   
 
- pk <- pimais %*% A # budget proportions 
+ aux_pk <- pimais %*% A # budget proportions 
 
- colnames(A) <- colnames(B) <- colnames(psitk) <- colnames(pk) <- paste('LB',1:K,sep='') 
+ pk <- matrix(aux_pk[order(aux_pk,
+                    decreasing = TRUE)],
+              ncol = dim(aux_pk)[2])
+
+ A <- matrix(A[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
+ B <- matrix(B[,order(aux_pk,
+               decreasing = TRUE)],
+             ncol = dim(aux_pk)[2])
 
  rownames(A) <- rownames(P)
  rownames(B) <- colnames(P)
 
+ colnames(pk) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep='')
+ 
  pij <- A %*% t(B) # expected budget
 
  residual <- P - pij
@@ -884,16 +902,6 @@ lba.mle.logit.B <- function(obj       ,
                      'iter_ide',
                      'psitk')
 
- #  names(results) <- c('Composition data matrix',
- #                      'Expected budget',
- #                      'Residual matrix',
- #                      'Mixing parameters',
- #                      'Latent budgets',
- #                      'Budget proportions',
- #                      'Value of the ls function',
- #                      'Number of iteractions',
- #                      'Logit parameters psitk')
- # 
  class(results)  <- c("lba.mle.logit",
                       "lba.mle")
  invisible(results)  

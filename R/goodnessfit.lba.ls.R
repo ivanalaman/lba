@@ -20,21 +20,22 @@ goodnessfit.lba.ls <- function(object,...){
   row.weights <- eval(getCall(object)$row.weights)
   col.weights <- eval(getCall(object)$col.weights)
 
-  if(is.null(row.weights)){
-    vI <- rep(1,I)
-    V  <- vI * diag(I)
-  } else {
-    vI <- row.weights
-    V <- vI * diag(I)
-  }
+ if(is.null(row.weights)){
+   vI <- sqrt(rowSums(N)/sum(N))
+   V  <- vI * diag(I)
+ } else {
+  vI <- row.weights
+  V <- vI * diag(I)
+ }
 
-  if(is.null(col.weights)){
-    wi <- rep(1,J)
-    W  <- wi * diag(J)
-  } else {
-    wi <- col.weights
-    W <- wi * diag(J)
-  }
+ # Generating the identity matrix of column weights if they aren't informed 
+ if(is.null(col.weights)){
+   wi <- 1/sqrt(colSums(N)/sum(N))
+   W  <- wi * diag(J)
+ } else {
+  wi <- col.weights
+  W <- wi * diag(J)
+ }
 
   pip <- rowSums(N)/sum(N)
 

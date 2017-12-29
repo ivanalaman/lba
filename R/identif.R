@@ -185,6 +185,8 @@ identif <- function(A,
 
   bout[which(bout < 0)] <- 0
   aout[which(aout < 0)] <- 0
+  bout[which(bout > 1)] <- 1
+  aout[which(aout > 1)] <- 1
 
   rownames(aout) <- rownames(bout) <- colnames(A)
 
@@ -225,7 +227,8 @@ identif <- function(A,
 
   binn[which(binn < 0)] <- 0
   ainn[which(ainn < 0)] <- 0
-  
+  binn[which(binn > 1)] <- 1
+  ainn[which(ainn > 1)] <- 1 
   rownames(ainn) <- rownames(binn) <- colnames(A)
 
   iter_ide <- round(as.numeric(ToptI$counts[2]/ToptI$outer.iterations))+ToptI$outer.iterations

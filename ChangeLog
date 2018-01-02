@@ -1,4 +1,4 @@
-2017-12-29 vs. 2.4.4 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+2018-01-02 vs. 2.4.4 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
  * Changed default of the estimation ls method. Now, the default is wls. If row.weights and col.weights arguments are NULL, then weights are respectivaly - square root of the sum of frequences marginal rows by total frequences and one by square root of the sum of frequences marginal columns by total frequences.
  * The output of the budget proportions are decreasing ordered and the mixing parameters and lantent components follow this planning.
  * The file pregnancy.Rd is properly described.

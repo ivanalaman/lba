@@ -230,7 +230,7 @@ plotcorr.lba.3d <- function(x,
 
     pch3d(colcoordi[,dim],
           pch = pch.budget,
-          col = col.budget,
+          color = col.budget,
           ...)
 
     aux1_colcoordi <- colcoordi[,dim]

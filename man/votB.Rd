@@ -44,7 +44,7 @@ participant voted for in the 1986 general elections in the Netherlands.
 }
 
 \usage{
-votB
+data(votB)
 }
 
 \keyword{dataset}

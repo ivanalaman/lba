@@ -1,3 +1,12 @@
+2022-05-12 vs. 2.4.5 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+ * Set to 1e-9 all element of the vector/matrix less than -1e-5 in lba.ls
+ function.
+ * Redeeming the publication date of the first version of lba in 2015/01/22, 1.0 version.
+ * Added correct citation of the package.
+ * Change partial argument "col" to "color" in plotcorr.lba.3d function.
+ * Corrected all data files .Rd, MANHATAN, PerfMark, etc. \usage{MANHATAN} to \usage{data(MANHATAN)}.
+ * Change manteiner Enio to Ivan.
+
 2018-01-02 vs. 2.4.4 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
  * Changed default of the estimation ls method. Now, the default is wls. If row.weights and col.weights arguments are NULL, then weights are respectivaly - square root of the sum of frequences marginal rows by total frequences and one by square root of the sum of frequences marginal columns by total frequences.
  * The output of the budget proportions are decreasing ordered and the mixing parameters and lantent components follow this planning.

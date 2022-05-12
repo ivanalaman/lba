@@ -47,7 +47,7 @@ Main, E. K.; et al. Pregnancy-Related Mortality in California: Causes, Character
 }
 
 \usage{
-pregnancy
+data(pregnancy)
 }
 
 \keyword{dataset}

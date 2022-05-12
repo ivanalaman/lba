@@ -1,0 +1,24 @@
+citEntry(entry  = "Article",
+  title         = "lba: An R Package for Latent Budget Analysis.",
+  author        = personList(as.person("Enio G. Jelihovschi"),
+   as.person("Ivan Bezerra Allaman")),
+  journal       = "R J.",
+  year          = "2018",
+  volume        = "10",
+  number        = "1",
+  pages         = "269--287",
+  url           = "https://doi.org/10.32614/RJ-2018-026",
+
+  textVersion   =
+  paste("Enio G. Jelihovschi and Ivan Bezerra Allaman (2018).",
+   "lba: An R Package for Latent Budget Analysis.", 
+   "The R Journal 10(1), 269-287.",
+   "URL https://doi.org/10.32614/RJ-2018-026"),
+
+  header       = "If you use lba package please cite:" 
+  )
+
+citFooter("Lots of time and effort were invested in creating lba package.",
+  "Please, cite it when using it together with R.",
+  "See also", sQuote("citation()"),
+  "for citing R.")

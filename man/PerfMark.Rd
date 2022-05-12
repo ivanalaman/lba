@@ -74,7 +74,7 @@ The data set is already cross-tabulated.
 }
 
 \usage{
-PerfMark
+data(PerfMark)
 }
 
 \keyword{datasets}

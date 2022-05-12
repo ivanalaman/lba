@@ -184,7 +184,7 @@ lba(obj, ...)
  \item{K}{Integer giving the number of latent budgets chosen by the user. The default is \code{1}.}
  \item{cA}{The value of a (I x K) matrix containing the constraints on the mixing parameters. Fixed constraints are the values themselves which are numbers in the [0,1] interval. The optional equality constraints are indicated by an integer starting from 2, such that parameters that must be equal have the same integer. The default is \code{NULL}, indicating no constraints.}
  \item{cB}{The value of a (J x K) matrix containing the constraints on the latent components. Fixed constraints are the values themselves which are numbers in the [0,1] interval. The optional equality constraints are indicated by an integer starting from 2, such that parameters that must be equal have the same integer. The default is \code{NULL}, indicating no constraints.}
- \item{logitA}{Design (IxS) matrix for row-covariates. The first column contains 1´s, indicating a constant covariate. The entries may be continuous or dummy coded values.}
+ \item{logitA}{Design (IxS) matrix for row-covariates. The first column contains the one number, indicating a constant covariate. The entries may be continuous or dummy coded values.}
  \item{logitB}{Design (JxT) matrix for column-covariates. The entries may be continuous or dummy coded values.}
  \item{omsk}{A (SxK) matrix giving the starting values for the multinomial logit parameters of the row covariates. The default is \code{NULL}, producing random starting values.}
  \item{psitk}{A (TxK) matrix giving the starting values for the multinomial logit parameters of the column covariates. The default is \code{NULL}, producing random starting values.}

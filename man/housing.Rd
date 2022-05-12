@@ -51,7 +51,7 @@ The observations were obtained from an investigation of Satisfaction with housin
 }
 
 \usage{
-housing
+data(housing)
 }
 
 \keyword{datasets}

@@ -12,6 +12,7 @@ lba.ls <- function(obj        ,
                    what,
                    ...)
 {
+ obj[obj == 0] <- 1e-5
 
  I  <- nrow(obj)     # row numbers of data matrix
  J  <- ncol(obj)       # column numbers of data matrix
@@ -95,19 +96,22 @@ lba.ls <- function(obj        ,
 
   xB  <- vec(x0b + QQinvb %*% t(C1) %*% lambdab)
 
+  ##substituidos por zero valores menor que 10-5
+  xB[xB <= -1e-5] <- 1e-5
+
   if(any(as.vector(xB) < 0)){
    C2 <- NULL
    d2 <- NULL
-   while(any(as.vector(xB) < -1e-10)){
+   while(any(as.vector(xB) < -1e-5)){
     C2 <- C2
     d2 <- d2
 
     Bw <- which(xB < 0, 
-                arr.ind=TRUE) 
+                arr.ind = TRUE) 
 
     b0  <- matrix(0, 
-                  nrow=nrow(xB), 
-                  ncol=dim(Bw)[1])
+                  nrow = nrow(xB), 
+                  ncol = dim(Bw)[1])
 
     for(i in 1:dim(Bw)[1]) b0[sapply(Bw[i,1],function(x)x),i] <- 1
 
@@ -125,7 +129,7 @@ lba.ls <- function(obj        ,
 
     if(any(dim(lambdab)[1] > J*K)) break
    }
-   xB[xB < 0] <- 0
+   xB[xB < 0] <- 1e-5
   }
   B <- matrix(xB, ncol = K)
 
@@ -142,21 +146,21 @@ lba.ls <- function(obj        ,
 
   ra <- lapply(apply(P_ast, 
                      1, 
-                     function(x) list(matrix(x,ncol=1))),'[[',1)
+                     function(x) list(matrix(x,ncol = 1))),'[[',1)
 
   QQinva <- lapply(mapply('%*%', 
                           tQa,
                           Qa, 
-                          SIMPLIFY=F),
+                          SIMPLIFY = FALSE),
                    function(x) ginv(x))
 
   x0a <- mapply('%*%',
                 mapply('%*%',
                        QQinva,
                        tQa,
-                       SIMPLIFY=F),
+                       SIMPLIFY = FALSE),
                 ra,
-                SIMPLIFY=F)
+                SIMPLIFY = FALSE)
 
   auxlambda1 <-  lapply(QQinva,
                         function(x) ginv(C1 %*% x %*%t(C1)))
@@ -167,7 +171,7 @@ lba.ls <- function(obj        ,
   lambdaa <- mapply('%*%',
                     auxlambda1,
                     auxlambda2,
-                    SIMPLIFY=F)
+                    SIMPLIFY = FALSE)
 
   xA <- mapply('+',
                x0a,
@@ -175,20 +179,24 @@ lba.ls <- function(obj        ,
                       lapply(QQinva,
                              function(x) x %*% t(C1)),
                       lambdaa,
-                      SIMPLIFY=F),
-               SIMPLIFY=F)
+                      SIMPLIFY = FALSE),
+               SIMPLIFY = FALSE)
+
+  for(i in 1:length(xA)){
+    {xA[[i]][xA[[i]]<=-1e-5] <- 1e-5}
+  }
 
   if(any(unlist(xA) < 0)){
    C2 <- NULL
    d2 <- NULL
 
-   while(any(unlist(xA) < -1e-10)){
+   while(any(unlist(xA) < -1e-5)){
     C2 <- C2
     d2 <- d2
 
-    Aw <- lapply(xA, function(x) which(x <0, arr.ind  = TRUE))
+    Aw <- lapply(xA, function(x) which(x < 0, arr.ind = TRUE))
 
-    a0 <- lapply(Aw, function(x) matrix(0,nrow=dim(x)[1],ncol=K))
+    a0 <- lapply(Aw, function(x) matrix(0,nrow = dim(x)[1],ncol = K))
 
     for(i in 1:I){
      for(j in 0:dim(Aw[[i]])[1]){
@@ -204,7 +212,7 @@ lba.ls <- function(obj        ,
      C2 <- mapply('rbind',
                   C2,
                   a0,
-                  SIMPLIFY=F)
+                  SIMPLIFY = FALSE)
     }
 
     C <- list()
@@ -224,13 +232,13 @@ lba.ls <- function(obj        ,
      d2 <- mapply('rbind',
                   d2,
                   a1,
-                  SIMPLIFY=F)
+                  SIMPLIFY = FALSE)
     }
 
     d <- mapply('rbind',
                 d1,
                 d2,
-                SIMPLIFY=F)
+                SIMPLIFY=FALSE)
 
     CT <-   lapply(C,
                    function(x)t(x))
@@ -239,7 +247,7 @@ lba.ls <- function(obj        ,
                   lapply(Qa,
                          function(x)t(x)),
                   Qa,
-                  SIMPLIFY=F)# transposta de Q x Q
+                  SIMPLIFY = FALSE)# transposta de Q x Q
 
     invQTQ <-  lapply(QTQ,
                       function(x)ginv(x))# inversa de QTQ
@@ -248,9 +256,9 @@ lba.ls <- function(obj        ,
                          mapply('%*%',
                                 C,
                                 invQTQ,
-                                SIMPLIFY=F),                       
+                                SIMPLIFY = FALSE),                       
                          CT,
-                         SIMPLIFY=F)
+                         SIMPLIFY = FALSE)
 
     invCinvQTQCT <-   lapply(CinvQTQCT,
                              function(x)ginv(x))
@@ -260,33 +268,33 @@ lba.ls <- function(obj        ,
                       mapply('%*%',
                              C,
                              x0a,
-                             SIMPLIFY=F),
-                      SIMPLIFY=F)
+                             SIMPLIFY = FALSE),
+                      SIMPLIFY = FALSE)
 
 
     lambdaa <- mapply('%*%',
                       invCinvQTQCT,                                     
                       d_Cx0a,
-                      SIMPLIFY=F)
+                      SIMPLIFY = FALSE)
 
     CTlambdaa <- mapply('%*%',
                         CT,
                         lambdaa,
-                        SIMPLIFY=F)
+                        SIMPLIFY = FALSE)
 
     invQTQCTlambdaa <- mapply('%*%',
                               invQTQ,
                               CTlambdaa,
-                              SIMPLIFY=F)
+                              SIMPLIFY = FALSE)
 
     xA <- mapply('+',
                  x0a,
                  invQTQCTlambdaa,
-                 SIMPLIFY=F)
+                 SIMPLIFY = FALSE)
 
     if(any(unlist(lapply(lambdaa, function(x) dim(x)[1] > I*K))) == TRUE) break
    }
-   for(i in 1:I) xA[[i]][xA[[i]] < 0]  <- 0
+   for(i in 1:I) xA[[i]][xA[[i]] < 0]  <- 1e-5
   }
 
   ifelse(K==1,
@@ -295,7 +303,7 @@ lba.ls <- function(obj        ,
 
          A <- t(sapply(xA, 
                        rbind, 
-                       simplify=T))) 
+                       simplify = TRUE))) 
 
   at <- max(abs(A - Aa))
   bt <- max(abs(B - Ba))
@@ -315,7 +323,7 @@ lba.ls <- function(obj        ,
 
  pimais <- rowSums(obj)/sum(obj)
 
- if(K==1){
+ if(K == 1){
 
   Aoi <- A
 
@@ -351,20 +359,20 @@ lba.ls <- function(obj        ,
  aux_pk <- pimais %*% Aoi # budget proportions
 
  pk <- matrix(aux_pk[order(aux_pk,
-                    decreasing=TRUE)],
+                    decreasing = TRUE)],
               ncol = dim(aux_pk)[2])
 
- Aoi <- matrix(Aoi[,order(aux_pk,decreasing=TRUE)],
+ Aoi <- matrix(Aoi[,order(aux_pk,decreasing = TRUE)],
                ncol = dim(aux_pk)[2])
- Boi <- matrix(Boi[,order(aux_pk,decreasing=TRUE)],
+ Boi <- matrix(Boi[,order(aux_pk,decreasing = TRUE)],
                ncol = dim(aux_pk)[2])
   
- A <- matrix(A[,order(aux_pk,decreasing=TRUE)],
+ A <- matrix(A[,order(aux_pk,decreasing = TRUE)],
              ncol = dim(aux_pk)[2])
- B <- matrix(B[,order(aux_pk,decreasing=TRUE)],
+ B <- matrix(B[,order(aux_pk,decreasing = TRUE)],
              ncol = dim(aux_pk)[2])
 
-colnames(pk) <- colnames(Aoi) <- colnames(Boi) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep='') 
+colnames(pk) <- colnames(Aoi) <- colnames(Boi) <- colnames(A) <- colnames(B) <- paste('LB',1:K,sep = '') 
 rownames(Aoi) <- rownames(A) <- rownames(P)
 rownames(Boi) <- rownames(B) <- colnames(P)
 

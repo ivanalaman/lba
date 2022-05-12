@@ -61,7 +61,7 @@ Reif, K., and Melich, A. (1990). Euro-Barometer 29: Environmental problems and C
 }
 
 \usage{
-postmater
+data(postmater)
 }
 
 \keyword{dataset} 

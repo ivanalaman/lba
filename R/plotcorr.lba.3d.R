@@ -169,7 +169,7 @@ plotcorr.lba.3d <- function(x,
        y = row.coords$y, 
        labels = labels.points,
        pos = pos.points,
-       col = col.points,
+       color = col.points,
        offset = 0.5,
        ...)
 
@@ -177,7 +177,7 @@ plotcorr.lba.3d <- function(x,
        y      = col.coords$y, 
        labels = labels.budget,
        cex    = cex.budget,
-       col    = col.budget,
+       color    = col.budget,
        pos    = pos.budget,
        offset = 0.5)
 
@@ -217,7 +217,7 @@ plotcorr.lba.3d <- function(x,
            ylab  = ylab,
            zlab  = zlab,
            pch   = pch.points, 
-           col   = col.points,
+           color   = col.points,
            ...)
 
     aux1_rowcoordi <- rowcoordi[,dim] 
@@ -230,7 +230,7 @@ plotcorr.lba.3d <- function(x,
 
     pch3d(colcoordi[,dim],
           pch = pch.budget,
-          col = col.budget,
+          color = col.budget,
           ...)
 
     aux1_colcoordi <- colcoordi[,dim]

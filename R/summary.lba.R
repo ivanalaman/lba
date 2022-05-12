@@ -5,13 +5,15 @@ summary.lba <- function(object,
  cat('|-------------------------------------------|\n')
  cat('|         COMPOSITION DATA MATRIX           |\n')
  cat('|-------------------------------------------|\n')
- print(round(object[[1]],digits=digits))
+ print(round(object[[1]],
+       digits=digits))
  cat('\n') 
 
  cat('|-------------------------------------------|\n')
  cat('|              EXPECTED BUDGET              |\n')
  cat('|-------------------------------------------|\n')
- print(round(object[[2]],digits=digits))
+ print(round(object[[2]],
+       digits=digits))
  cat('\n')
 
  cat('|-------------------------------------------|\n')

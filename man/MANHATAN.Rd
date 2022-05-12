@@ -43,7 +43,7 @@ The observations were obtained in a study carried out by the sociologist Leo Sro
 }
 
 \usage{
-MANHATAN
+data(MANHATAN)
 }
 
 \keyword{datasets}

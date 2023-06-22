@@ -1,3 +1,6 @@
+2023-06-20 vs. 2.4.51 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
+ * Adjustment of files as required by the cran 
+ 
 2022-05-12 vs. 2.4.5 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
  * Set to 1e-9 all element of the vector/matrix less than -1e-5 in lba.ls
  function.
@@ -16,7 +19,7 @@
  * Fixed bug in the class matrix object without labels in row and column.
 
 2017-02-07 vs. 2.4.2 - Ivan Bezerra Allaman <ivanalaman@gmail.com>
- * Changed integer value of radius argument in plotcorr.lba.1d to vector of the size lba's.
+ * Changed integer value of radius argument in plotcorr.lba.1d to vector of the size lba.
 
 2016-12-19 vs. 2.4.1 - Ivan Bezerra Allaman <ivanalaman@gmail.com> and Enio G. Jelihovschi <eniojelihovs@gmail.com>
  * Update date to submit to cran

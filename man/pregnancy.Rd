@@ -39,11 +39,11 @@ The \code{pregnancy} matrix has 16 rows and 5 columns. The raw data refers to Ca
 }
 
 \source{
-Main, E. K.; et al. Pregnancy-Related Mortality in California: Causes, Characteristics, and Improvement Opportunities. \emph{OBSTETRICS \& GYNECOLOGY}. \bold{125}, 938--947.
+Main, E. K.; et al. Pregnancy-Related Mortality in California: Causes, Characteristics, and Improvement Opportunities. \emph{OBSTETRICS and GYNECOLOGY}. \bold{125}, 938--947.
 }
 
 \references{
-Main, E. K.; et al. Pregnancy-Related Mortality in California: Causes, Characteristics, and Improvement Opportunities. \emph{OBSTETRICS \& GYNECOLOGY}. \bold{125}, 938--947.
+Main, E. K.; et al. Pregnancy-Related Mortality in California: Causes, Characteristics, and Improvement Opportunities. \emph{OBSTETRICS and GYNECOLOGY}. \bold{125}, 938--947.
 }
 
 \usage{

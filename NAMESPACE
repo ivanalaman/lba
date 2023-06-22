@@ -25,6 +25,7 @@ export(lba, plotlba)
 export(lba, plotcorr)
 
 # S3 methods
+S3method(lba, default)
 S3method(lba, formula)
 S3method(lba, matrix)
 S3method(lba, table)
@@ -38,6 +39,7 @@ S3method(lba, mle.logit.A)
 S3method(lba, mle.logit.B)
 S3method(lba, mle.logit.AB)
 
+S3method(goodnessfit, default)
 S3method(goodnessfit, lba.ls)
 S3method(goodnessfit, lba.ls.fe)
 S3method(goodnessfit, lba.ls.logit)

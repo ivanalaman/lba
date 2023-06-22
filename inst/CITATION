@@ -1,7 +1,6 @@
-citEntry(entry  = "Article",
+bibentry(bibtype  = "Article",
   title         = "lba: An R Package for Latent Budget Analysis.",
-  author        = personList(as.person("Enio G. Jelihovschi"),
-   as.person("Ivan Bezerra Allaman")),
+  author        = c(person("Enio G. Jelihovschi"), person("Ivan Bezerra Allaman")),
   journal       = "R J.",
   year          = "2018",
   volume        = "10",
@@ -14,7 +13,6 @@ citEntry(entry  = "Article",
    "lba: An R Package for Latent Budget Analysis.", 
    "The R Journal 10(1), 269-287.",
    "URL https://doi.org/10.32614/RJ-2018-026"),
-
   header       = "If you use lba package please cite:" 
   )
 

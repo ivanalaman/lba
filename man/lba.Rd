@@ -249,7 +249,7 @@ used; \code{"mle"} when maximum likelihood method is used. The default is \code{
 }
 
 \references{
- Agresti, Alan. 2002. \emph{Categorical Data Analysis, second edition}. Hoboken: John Wiley \& Sons.
+ Agresti, Alan. 2002. \emph{Categorical Data Analysis, second edition}. Hoboken: John Wiley and Sons.
 
  de Leeuw, J., and van der Heijden, P.G.M. 1988. "The analysis of time-budgets with a latent time-budget model". In E. Diday (Ed.), \emph{Data Analysis and Informatics V}. pp. 159-166. Amsterdam: North-Holland.
 

@@ -50,7 +50,7 @@ plotcorr.lba.1d <- function(x,
   rlabels <- rownames(alfas) 
   K <- ncol(alfas)  
 
-  #### Obtendo as coordenadas por meio da análise de correspondência.
+  #### Obtendo as coordenadas por meio da analise de correspondencia.
   N <- alfas
   P <- N/sum(N) 
 
@@ -92,7 +92,7 @@ plotcorr.lba.1d <- function(x,
                                sep=' ')
   rownames(colcoordi) <- colnames(N)
 
-  ################ Fim do algorítimo
+  ################ Fim do algoritimo
 
   if(is.null(labels.budget)) labels.budget <- colnames(N)
 
@@ -122,7 +122,7 @@ plotcorr.lba.1d <- function(x,
 
   }
 
-  ### Cálculo das distâncias
+  ### Calculo das distancias
 
   groups_lb1 <- as.data.frame(apply(rowcoor,
                                     2,
@@ -198,7 +198,7 @@ plotcorr.lba.1d <- function(x,
                               col_aux,
                               groups))
 
-  #### Fim do algorítimo das distâncias
+  #### Fim do algoritimo das distancias
 
   mia <- min(rowcoor, 
              colcoor)

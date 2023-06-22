@@ -50,7 +50,7 @@ plotcorr.lba.3d <- function(x,
   rlabels <- rownames(alfas) 
   K <- ncol(alfas)  
 
-  #### Obtendo as coordenadas por meio da análise de correspondência.
+  #### Obtendo as coordenadas por meio da analise de correspondencia.
   N <- alfas
   P <- N/sum(N) 
 
@@ -92,7 +92,7 @@ plotcorr.lba.3d <- function(x,
 			       sep=' ')
   rownames(colcoordi) <- colnames(N)
 
-  ################ Fim do algorítimo
+  ################ Fim do algoritimo
 
   if(is.null(labels.budget)) labels.budget <- colnames(N)#ok
 

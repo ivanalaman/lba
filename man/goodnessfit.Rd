@@ -102,7 +102,7 @@ goodnessfit(object,...)
 }
 
 \references{
-   Agresti, Alan. 2002. \emph{Categorical Data Analysis, second edition}. Hoboken: John Wiley \& Sons.
+   Agresti, Alan. 2002. \emph{Categorical Data Analysis, second edition}. Hoboken: John Wiley and Sons.
 
    van der Ark, A. L. 1999. \emph{Contributions to Latent Budget Analysis, a tool for the analysis of compositional data}. Ph.D. Thesis University of Utrecht.
 }

@@ -12,7 +12,7 @@
 }
 
 \author{
-Enio G. Jelihovschi <eniojelihovs@gmail.com> and Ivan Bezerra Allaman <ivanalaman@gmail.com>. We are grateful to José C. Faria, Andreas L. van der Ark and Fábio M. Correa for suggestions.
+Enio G. Jelihovschi <eniojelihovs@gmail.com> and Ivan Bezerra Allaman <ivanalaman@gmail.com>. We are grateful to Jose C. Faria, Andreas L. van der Ark and Fabio M. Correa for suggestions.
 
 Maintainer: Enio G. Jelihovschi <eniojelihovs@gmail.com>
 }

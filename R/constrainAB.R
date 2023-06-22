@@ -55,14 +55,14 @@ constrainAB <- function(cA)
  aux2 <- lapply(apply(a,
                       1,
                       function(x) x[x < 1] ),
-                function(x)x[!is.na(x)])# Extraindo da matrix as linhas completas com somente fixed constraint (caso tenha é claro!).
+                function(x)x[!is.na(x)])# Extraindo da matrix as linhas completas com somente fixed constraint (caso tenha e claro)
 
  names(aux2) <- 1:I
 
  if(dim(aux1)[1] > 1){
 
   aux3 <- combn(1:dim(aux1)[1],
-                2) # Objeto auxiliar para computar se as linhas completas são idênticas.
+                2) # Objeto auxiliar para computar se as linhas completas sao identicas.
 
   aux4 <- sapply(1:dim(aux3)[2],
                  function(i) setequal(aux1[aux3[1,i],],
@@ -70,7 +70,7 @@ constrainAB <- function(cA)
 
   aux5 <- sapply(1:dim(aux3)[2],
                  function(i) identical(ftable(aux1[aux3[1,i],]),
-                                       ftable(aux1[aux3[2,i],]))) # As linhas completas possuem as mesmas frequências?
+                                       ftable(aux1[aux3[2,i],]))) # As linhas completas possuem as mesmas frequencias?
 
   if(dim(aux1)[1] > 1 & aux4 == TRUE & aux5 == FALSE & length(unlist(lapply(aux2,
                                                                             function(x) x[!is.na(x)]))) == 0) {
@@ -140,7 +140,7 @@ constrainAB <- function(cA)
   # ------- --------- --------- ---------- ---------- --------- ------- - #
   # A partir de agora, iremos buscar na matriz de equality constraints se #
   # tem alguma linha toda preenchida,  pois existe  uma  necessidade   de #
-  # escrever um programa específico para estes casos.                     #
+  # escrever um programa especifico para estes casos.                     #
   # -------- -------- --------- -------- -------- -------- --------- ---  #
 
   # Este objeto checa na matriz se tem alguma linha toda preenchida, ou seja, sem NA.
@@ -161,7 +161,7 @@ constrainAB <- function(cA)
    }
   } else {
 
-   # Vamos começar o árduo trabalho no caso em que temos uma ou mais 
+   # Vamos começar o arduo trabalho no caso em que temos uma ou mais 
    # linhas todas preenchidas.
 
    posequalaux <- apply(aux1,
@@ -191,9 +191,9 @@ constrainAB <- function(cA)
     }
 
    # ------ ------ ------- ------- -------- -------- -------- ------ --#
-   # Quando os equalitys não são os mesmos, precisamos saber quais são #
+   # Quando os equalitys nao sao os mesmos, precisamos saber quais sao #
    # estes equality. Neste caso,  precisamos    saber  primeiro, quais #
-   # aperecem com menor frequência, pois estes, determinarão os valores#
+   # aperecem com menor frequencia, pois estes, determinarao os valores#
    # dos demais. Este objeto retorna isto.                             #
    # --------- ----- ------ ------ ------ ----- ------ ------ ----- -- #
 
@@ -204,16 +204,16 @@ constrainAB <- function(cA)
 
    for(i in 1:length(auxEE)){
     aux6[[i]] <-  ifelse(length(auxEE[[i]]) == 0,
-                         names(table(posequal[[i]]))[1], # Equalitys na mesma proporção
-                         names(table(posequal[[i]]))[table(posequal[[i]]) == min(table(posequal[[i]]))]) # Os equalitys com menores frequências em cada linha.
+                         names(table(posequal[[i]]))[1], # Equalitys na mesma proporcao
+                         names(table(posequal[[i]]))[table(posequal[[i]]) == min(table(posequal[[i]]))]) # Os equalitys com menores frequencias em cada linha.
 
    }
 
-   # Este objeto retorna a frequência absoluta de cada equality constrain.
+   # Este objeto retorna a frequencia absoluta de cada equality constrain.
    aux7  <-  lapply(posequal, 
                     table)
 
-   # Este objeto retorna a frequência absoluta apenas dos equality com menores frequências. 
+   # Este objeto retorna a frequencia absoluta apenas dos equality com menores frequencias. 
    aux8 <-  mapply(function(x,y) x[y], 
                    aux7, 
                    aux6,
@@ -221,15 +221,15 @@ constrainAB <- function(cA)
 
    names(aux6) <- names(aux8)
    # ------ ------ ----- ------ ----- ------ ----- -------- ------ --#
-   # Agora a coisa começa a ficar um pouco mais complicado. O valor  #
-   # aleatório dos equalitys na primeira linha identificada completa #
-   # (sem NA) irá determinar os valores das demais linhas caso tenha #
+   # Agora a coisa comeca a ficar um pouco mais complicado. O valor  #
+   # aleatorio dos equalitys na primeira linha identificada completa #
+   # (sem NA) ira determinar os valores das demais linhas caso tenha #
    # equalitys iguais.
    # ----- ------- ------ ------ ------ ----- ------ ---- ------ -- -#
 
    posequaldifaux <- sapply(lapply(posequal[-1], 
                                    function(x) x%in%posequal[[1]]), 
-                            function(x) all(x == FALSE)) # Este objeto retorna os valores aleatórios do(s) equality com menor(es) frequência(s) apenas das linhas completas que os equalitys são todos diferentes, ou seja, não tem nenhum equality em comum.  
+                            function(x) all(x == FALSE)) # Este objeto retorna os valores aleatorios do(s) equality com menor(es) frequencia(s) apenas das linhas completas que os equalitys sao todos diferentes, ou seja, nao tem nenhum equality em comum.  
 
    posequaldif <- names(posequaldifaux[posequaldifaux == TRUE])
 
@@ -251,7 +251,7 @@ constrainAB <- function(cA)
 
    }
 
-   # Este objeto retorna os equality com as demais frequências das linhas completas com equalitys totalmente diferentes.
+   # Este objeto retorna os equality com as demais frequencias das linhas completas com equalitys totalmente diferentes.
 
    aux9 <- list()
 
@@ -264,13 +264,13 @@ constrainAB <- function(cA)
            aux9[[i]])   
    }
 
-   # Escolhemos um deles para gerar um valor aleatório, pois o outro deverá ter um valor no qual a soma deva ser 1. Por comodidade escolhemos o primeiro no vetor.
+   # Escolhemos um deles para gerar um valor aleatorio, pois o outro devera ter um valor no qual a soma deva ser 1. Por comodidade escolhemos o primeiro no vetor.
    aux10  <- lapply(aux9, 
                     function(x) ifelse(length(x)==1, 
                                        x, 
                                        x[-length(x)]))
 
-   # Este objeto retorna a frequência absoluta do equality constrain.
+   # Este objeto retorna a frequencia absoluta do equality constrain.
    aux11 <- list()
 
    for(i in namesvaluesfr) {
@@ -279,11 +279,11 @@ constrainAB <- function(cA)
 
    }
 
-   # Agora, o último equality será determinado de modo que a soma nas linhas deva ser 1. Este valor só é necessário se aux9 > 1.
+   # Agora, o ultimo equality sera determinado de modo que a soma nas linhas deva ser 1. Este valor so e necessario se aux9 > 1.
    if(all(unlist(lapply(aux9, 
                         function(x) any(length(x) > 1))) == TRUE)){
 
-    # Este objeto retornb o(s) valor(es) dele(s).
+    # Este objeto retorna o(s) valor(es) dele(s).
     values2aux <- list(list())
 
     for(i in namesvaluesfr){
@@ -339,7 +339,7 @@ constrainAB <- function(cA)
     valuesf <- lapply(valuesf, 
                       function(x) x[order(names(x))])
 
-    # Iremos bgora substituir os equalitys pelos valores encontrados.
+    # Iremos agora substituir os equalitys pelos valores encontrados.
     equali <- lapply(namesvaluesfr, 
                      function(x) sort(unique(posequal[[x]])))
 
@@ -361,7 +361,7 @@ constrainAB <- function(cA)
     valuesfr <- valuesfr[!sapply(valuesfr,
                                  is.null)] 
 
-    aux22 <- all(is.na(unique(unlist(aux2))) == TRUE) # Não tem nenhum fixed constrain?
+    aux22 <- all(is.na(unique(unlist(aux2))) == TRUE) # Nao tem nenhum fixed constrain?
 
     values2 <- list()
 

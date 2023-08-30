@@ -32,13 +32,13 @@ goodnessfit.lba.mle.fe <- function(object,...){
   chi2 <- sum(((N - pexpected)^2)/pexpected) 
 
   #++++ calculus of dfd
-  recu_cA = eval(getCall(object)$cA) # recuperando a matrix de restrição
-  recu_cB = eval(getCall(object)$cB) # recuperando a matrix de restrição
+  recu_cA = eval(getCall(object)$cA) # recuperando a matrix de restricao
+  recu_cB = eval(getCall(object)$cB) # recuperando a matrix de restricao
 
   if(!is.null(recu_cA)){
        au1 = as.vector(recu_cA) 
 
-       #+++++SÓ EQUALITY++++###
+       #+++++ONLY EQUALITY++++###
        au1e = au1[!is.na(au1) & au1 > 1]
        au2e = table(au1e)
 
@@ -46,7 +46,7 @@ goodnessfit.lba.mle.fe <- function(object,...){
               au3e <- sum(sapply(au2e,function(x) x-1)),
               au3e <- 0)
 
-       #+++++SÓ FIXED+++++###
+       #+++++ONLY FIXED+++++###
        au1f = au1[!is.na(au1) & au1 <= 1]
        au2f = length(au1f)
 
